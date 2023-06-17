@@ -1,0 +1,112 @@
+:root {
+    --rf-blue: #0d6efd;
+    --rf-indigo: #6610f2;
+    --rf-purple: #6f42c1;
+    --rf-pink: #d63384;
+    --rf-red: #dc3545;
+    --rf-orange: #fd7e14;
+    --rf-yellow: #ffc107;
+    --rf-green: #198754;
+    --rf-teal: #20c997;
+    --rf-cyan: #0dcaf0;
+    --rf-black: #000;
+    --rf-white: #fff;
+    --rf-gray: #858c97;
+    --rf-gray-dark: #434a57;
+    --rf-gray-100: #f6f9fc;
+    --rf-gray-200: #edf1f5;
+    --rf-gray-300: #e3e9ef;
+    --rf-gray-400: #d7dde2;
+    --rf-gray-500: #b4bbc3;
+    --rf-gray-600: #858c97;
+    --rf-gray-700: #576071;
+    --rf-gray-800: #434a57;
+    --rf-gray-900: #121519;
+    --rf-primary: #448c74;
+    --rf-secondary: #edf1f5;
+    --rf-success: #3fca90;
+    --rf-info: #3f7fca;
+    --rf-warning: #edcb50;
+    --rf-danger: #ed5050;
+    --rf-light: #fff;
+    --rf-dark: #121519;
+    --rf-primary-rgb: 68, 140, 116;
+    --rf-secondary-rgb: 237, 241, 245;
+    --rf-success-rgb: 63, 202, 144;
+    --rf-info-rgb: 63, 127, 202;
+    --rf-warning-rgb: 237, 203, 80;
+    --rf-danger-rgb: 237, 80, 80;
+    --rf-light-rgb: 255, 255, 255;
+    --rf-dark-rgb: 18, 21, 25;
+    --rf-white-rgb: 255, 255, 255;
+    --rf-black-rgb: 0, 0, 0;
+    --rf-body-color-rgb: 87, 96, 113;
+    --rf-body-bg-rgb: 255, 255, 255;
+    --rf-font-sans-serif: "Inter", sans-serif;
+    --rf-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
+        "Liberation Mono", "Courier New", monospace;
+    --rf-gradient: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.15),
+        rgba(255, 255, 255, 0)
+    );
+    --rf-root-font-size: 1rem;
+    --rf-body-font-family: var(--rf-font-sans-serif);
+    --rf-body-font-size: 1rem;
+    --rf-body-font-weight: 400;
+    --rf-body-line-height: 1.5;
+    --rf-body-color: #576071;
+    --rf-body-bg: #fff;
+    --rf-border-width: 1px;
+    --rf-border-style: solid;
+    --rf-border-color: #e3e9ef;
+    --rf-border-color-translucent: rgba(0, 0, 0, 0.175);
+    --rf-border-radius: 1rem;
+    --rf-border-radius-sm: calc(var(--rf-border-radius) * 0.75);
+    --rf-border-radius-lg: calc(var(--rf-border-radius) * 1.125);
+    --rf-border-radius-xl: calc(var(--rf-border-radius) * 1.5);
+    --rf-border-radius-2xl: calc(var(--rf-border-radius) * 2.25);
+    --rf-border-radius-pill: 50rem;
+    --rf-link-color: #448c74;
+    --rf-link-hover-color: #37715d;
+    --rf-code-color: #e3116c;
+    --rf-highlight-bg: #fff3cd;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+.primary {
+    color: var(--rf-primary);
+}
+
+.bg_primary {
+    background-color: var(--rf-primary);
+}
+
+.bg_primary:hover {
+    background-color: var(--rf-link-hover-color);
+}
+
+.form-signin {
+    max-width: 330px;
+    padding: 1rem;
+}
+
+.form-signin .form-floating:focus-within {
+    z-index: 2;
+}
+
+.form-signin input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}

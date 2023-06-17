@@ -1,0 +1,34 @@
+{
+    "name": "researchfreak",
+    "version": "1.0.0",
+    "description": "��#\u0000 \u0000R\u0000e\u0000s\u0000e\u0000a\u0000r\u0000c\u0000h\u0000F\u0000r\u0000e\u0000a\u0000k\u0000\r\u0000 \u0000",
+    "main": "server.js",
+    "type": "module",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "nodemon server.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/TasmimLamia/ResearchFreak.git"
+    },
+    "author": "TasmimLamia",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/TasmimLamia/ResearchFreak/issues"
+    },
+    "homepage": "https://github.com/TasmimLamia/ResearchFreak#readme",
+    "dependencies": {
+        "body-parser": "^1.20.2",
+        "bootstrap": "^5.3.1",
+        "cookie-parser": "^1.4.6",
+        "cors": "^2.8.5",
+        "dotenv": "^16.3.1",
+        "ejs": "^3.1.9",
+        "express": "^4.18.2",
+        "express-async-handler": "^1.2.0",
+        "mysql2": "^3.5.2",
+        "nodemon": "^3.0.1",
+        "sequelize": "^6.32.1"
+    }
+}
