@@ -1,0 +1,1446 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Profile · RF</title>
+        <!-- SEO Meta Tags-->
+        <meta name="description" content="ResearchFreak" />
+        <meta name="keywords" content="ResearchFreak" />
+        <meta name="author" content="TasmimLamia" />
+        <!-- Viewport-->
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <!-- Favicon and Touch Icons-->
+        <link
+            rel="apple-touch-icon"
+            sizes="57x57"
+            href="/assets/img/favicons/apple-icon-57x57.png"
+        />
+        <link
+            rel="apple-touch-icon"
+            sizes="60x60"
+            href="/assets/img/favicons/apple-icon-60x60.png"
+        />
+        <link
+            rel="apple-touch-icon"
+            sizes="72x72"
+            href="/assets/img/favicons/apple-icon-72x72.png"
+        />
+        <link
+            rel="apple-touch-icon"
+            sizes="76x76"
+            href="/assets/img/favicons/apple-icon-76x76.png"
+        />
+        <link
+            rel="apple-touch-icon"
+            sizes="114x114"
+            href="/assets/img/favicons/apple-icon-114x114.png"
+        />
+        <link
+            rel="apple-touch-icon"
+            sizes="120x120"
+            href="/assets/img/favicons/apple-icon-120x120.png"
+        />
+        <link
+            rel="apple-touch-icon"
+            sizes="144x144"
+            href="/assets/img/favicons/apple-icon-144x144.png"
+        />
+        <link
+            rel="apple-touch-icon"
+            sizes="152x152"
+            href="/assets/img/favicons/apple-icon-152x152.png"
+        />
+        <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="/assets/img/favicons/apple-icon-180x180.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="192x192"
+            href="/assets/img/favicons/android-icon-192x192.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/assets/img/favicons/favicon-32x32.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="96x96"
+            href="/assets/img/favicons/favicon-96x96.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/assets/img/favicons/favicon-16x16.png"
+        />
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="msapplication-TileColor" content="#ffffff" />
+        <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
+        <meta name="theme-color" content="#ffffff" />
+        <!-- Theme mode-->
+        <script>
+            let mode = window.localStorage.getItem("mode"),
+                root = document.getElementsByTagName("html")[0];
+            // if (mode !== undefined && mode === "dark") {
+            //     root.classList.add("dark-mode");
+            // } else {
+            //     root.classList.remove("dark-mode");
+            // }
+            root.classList.add("dark-mode");
+        </script>
+        <!-- Page loading styles-->
+        <style>
+            .page-loading {
+                position: fixed;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                -webkit-transition: all 0.4s 0.2s ease-in-out;
+                transition: all 0.4s 0.2s ease-in-out;
+                background-color: #fff;
+                opacity: 0;
+                visibility: hidden;
+                z-index: 9999;
+            }
+            .dark-mode .page-loading {
+                background-color: #121519;
+            }
+            .page-loading.active {
+                opacity: 1;
+                visibility: visible;
+            }
+            .page-loading-inner {
+                position: absolute;
+                top: 50%;
+                left: 0;
+                width: 100%;
+                text-align: center;
+                -webkit-transform: translateY(-50%);
+                transform: translateY(-50%);
+                -webkit-transition: opacity 0.2s ease-in-out;
+                transition: opacity 0.2s ease-in-out;
+                opacity: 0;
+            }
+            .page-loading.active > .page-loading-inner {
+                opacity: 1;
+            }
+            .page-loading-inner > span {
+                display: block;
+                font-family: "Inter", sans-serif;
+                font-size: 1rem;
+                font-weight: normal;
+                color: #6f788b;
+            }
+            .dark-mode .page-loading-inner > span {
+                color: #fff;
+                opacity: 0.6;
+            }
+            .page-spinner {
+                display: inline-block;
+                width: 2.75rem;
+                height: 2.75rem;
+                margin-bottom: 0.75rem;
+                vertical-align: text-bottom;
+                background-color: #d7dde2;
+                border-radius: 50%;
+                opacity: 0;
+                -webkit-animation: spinner 0.75s linear infinite;
+                animation: spinner 0.75s linear infinite;
+            }
+            .dark-mode .page-spinner {
+                background-color: rgba(255, 255, 255, 0.25);
+            }
+            @-webkit-keyframes spinner {
+                0% {
+                    -webkit-transform: scale(0);
+                    transform: scale(0);
+                }
+                50% {
+                    opacity: 1;
+                    -webkit-transform: none;
+                    transform: none;
+                }
+            }
+            @keyframes spinner {
+                0% {
+                    -webkit-transform: scale(0);
+                    transform: scale(0);
+                }
+                50% {
+                    opacity: 1;
+                    -webkit-transform: none;
+                    transform: none;
+                }
+            }
+        </style>
+        <!-- Page loading scripts-->
+        <script>
+            (function () {
+                window.onload = function () {
+                    const preloader = document.querySelector(".page-loading");
+                    preloader.classList.remove("active");
+                    setTimeout(function () {
+                        preloader.remove();
+                    }, 1500);
+                };
+            })();
+        </script>
+        <!-- Import Google Font-->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
+            rel="stylesheet"
+            id="google-font"
+        />
+        <!-- Vendor styles-->
+        <!-- Main Theme Styles + Bootstrap-->
+        <link
+            rel="stylesheet"
+            media="screen"
+            href="/assets/css/theme.min.css"
+        />
+        <!-- Customizer generated styles-->
+        <style id="customizer-styles"></style>
+    </head>
+    <!-- Body-->
+    <body>
+        <!-- Page loading spinner-->
+        <div class="page-loading active">
+            <div class="page-loading-inner">
+                <div class="page-spinner"></div>
+                <span>Loading...</span>
+            </div>
+        </div>
+        <!-- Page wrapper-->
+        <main class="page-wrapper">
+            <!-- Page content-->
+            <div class="dark-mode">
+                <!-- Navbar. Remove 'fixed-top' class to make the navigation bar scrollable with the page-->
+                <header class="navbar navbar-expand-lg fixed-top">
+                    <div class="container">
+                        <a class="navbar-brand pe-sm-3" href="/"
+                            ><img
+                                class="pe-sm-1"
+                                src="/assets/img/RF.png"
+                                width="48"
+                                height="auto"
+                                alt=""
+                            />ResearchFreak</a
+                        >
+                        <!-- <a
+                            class="btn btn-primary btn-sm fs-sm order-lg-3 d-none d-sm-inline-flex"
+                            href="#"
+                            target="_blank"
+                            rel="noopener"
+                            ><i class="ai-cart fs-xl me-2 ms-n1"></i>Buy now</a
+                        > -->
+                        <!-- User signed in state. Account dropdown on screens > 576px-->
+                        <div class="dropdown nav d-none d-sm-block order-lg-3">
+                            <a
+                                class="nav-link d-flex align-items-center p-0"
+                                href="#"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                                ><img
+                                    class="border rounded-circle"
+                                    src="/assets/img/RF.png"
+                                    width="45"
+                                    alt="Isabella Bocouse"
+                                />
+                                <div class="ps-2">
+                                    <div class="fs-xs lh-1 opacity-60">
+                                        Hello,
+                                    </div>
+                                    <div class="fs-sm dropdown-toggle">
+                                        Isabella
+                                    </div>
+                                </div></a
+                            >
+                            <div class="dropdown-menu dropdown-menu-end my-1">
+                                <h6
+                                    class="dropdown-header fs-xs fw-medium text-muted text-uppercase pb-1"
+                                >
+                                    Account
+                                </h6>
+                                <a
+                                    class="dropdown-item"
+                                    href="account-overview.html"
+                                    ><i
+                                        class="ai-user-check fs-lg opacity-70 me-2"
+                                    ></i
+                                    >Overview</a
+                                >
+                                <div class="dropdown-divider"></div>
+                                <a
+                                    class="dropdown-item"
+                                    href="account-signin.html"
+                                    ><i
+                                        class="ai-logout fs-lg opacity-70 me-2"
+                                    ></i
+                                    >Sign out</a
+                                >
+                            </div>
+                        </div>
+                        <button
+                            class="navbar-toggler ms-sm-3"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#navbarNav"
+                        >
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <nav class="collapse navbar-collapse" id="navbarNav">
+                            <ul
+                                class="navbar-nav navbar-nav-scroll m-auto"
+                                style="--ar-scroll-height: 520px"
+                            >
+                                <li class="nav-item">
+                                    <a
+                                        class="nav-link active"
+                                        href="components/typography.html"
+                                        >Profile</a
+                                    >
+                                </li>
+                                <li class="nav-item">
+                                    <a
+                                        class="nav-link"
+                                        href="docs/getting-started.html"
+                                        >Connections</a
+                                    >
+                                </li>
+                                <li class="nav-item">
+                                    <a
+                                        class="nav-link"
+                                        href="docs/getting-started.html"
+                                        >Projects</a
+                                    >
+                                </li>
+                                <li class="nav-item">
+                                    <a
+                                        class="nav-link"
+                                        href="docs/getting-started.html"
+                                        >Search</a
+                                    >
+                                </li>
+                                <!-- User signed in state. Account dropdown on screens > 576px-->
+                                <li
+                                    class="nav-item dropdown d-sm-none border-top mt-2 pt-2"
+                                >
+                                    <a
+                                        class="nav-link"
+                                        href="#"
+                                        data-bs-toggle="dropdown"
+                                        aria-expanded="false"
+                                        ><img
+                                            class="border rounded-circle"
+                                            src="/assets/img/RF.png"
+                                            width="45"
+                                            alt="Isabella Bocouse"
+                                        />
+                                        <div class="ps-2">
+                                            <div class="fs-xs lh-1 opacity-60">
+                                                Hello,
+                                            </div>
+                                            <div class="fs-sm dropdown-toggle">
+                                                Isabella
+                                            </div>
+                                        </div></a
+                                    >
+                                    <div class="dropdown-menu">
+                                        <h6
+                                            class="dropdown-header fs-xs fw-medium text-muted text-uppercase pb-1"
+                                        >
+                                            Account
+                                        </h6>
+                                        <a
+                                            class="dropdown-item"
+                                            href="account-overview.html"
+                                            ><i
+                                                class="ai-user-check fs-lg opacity-70 me-2"
+                                            ></i
+                                            >Overview</a
+                                        >
+                                        <div class="dropdown-divider"></div>
+                                        <a
+                                            class="dropdown-item"
+                                            href="account-signin.html"
+                                            ><i
+                                                class="ai-logout fs-lg opacity-70 me-2"
+                                            ></i
+                                            >Sign out</a
+                                        >
+                                    </div>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </header>
+                <div class="container py-5 mt-4 mt-lg-5 mb-lg-4 my-xl-5">
+                    <div class="row pt-sm-2 pt-lg-0">
+                        <!-- Sidebar (offcanvas on sreens < 992px)-->
+                        <aside class="col-lg-4 pe-lg-2 pe-xl-3 mt-n3">
+                            <div class="position-lg-sticky top-0">
+                                <div
+                                    class="d-none d-lg-block"
+                                    style="padding-top: 105px"
+                                ></div>
+                                <div
+                                    class="offcanvas-lg offcanvas-start"
+                                    id="sidebarAccount"
+                                >
+                                    <button
+                                        class="btn-close position-absolute top-0 end-0 mt-3 me-3 d-lg-none"
+                                        type="button"
+                                        data-bs-dismiss="offcanvas"
+                                        data-bs-target="#sidebarAccount"
+                                    ></button>
+                                    <div class="offcanvas-body">
+                                        <div class="pb-2 pb-lg-0 mb-4 mb-lg-5">
+                                            <img
+                                                class="d-block rounded-circle mb-2"
+                                                src="/assets/img/RF.png"
+                                                width="80"
+                                                alt="Isabella Bocouse"
+                                            />
+                                            <h3 class="h5 mb-1">
+                                                Isabella Bocouse
+                                            </h3>
+                                            <!-- <p class="fs-sm text-muted mb-0">
+                                                bocouse@example.com
+                                            </p> -->
+                                        </div>
+                                        <nav
+                                            class="nav flex-column pb-2 pb-lg-4 mb-3"
+                                        >
+                                            <table class="table mb-0">
+                                                <tbody>
+                                                    <tr>
+                                                        <td
+                                                            class="border-0 text-muted py-2 px-0"
+                                                        >
+                                                            Website
+                                                        </td>
+                                                        <td
+                                                            class="col-md-10 col-lg-8 border-0 text-dark fw-medium py-2"
+                                                        >
+                                                            https://isabella-bocouse.com
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td
+                                                            class="border-0 text-muted py-2 px-0"
+                                                        >
+                                                            Social-media
+                                                        </td>
+                                                        <td
+                                                            class="col-md-10 col-lg-8 border-0 text-dark fw-medium py-2"
+                                                        >
+                                                            https://linkedin.com/r/isabella-bocouse
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td
+                                                            class="border-0 text-muted py-2 px-0"
+                                                        >
+                                                            Gender
+                                                        </td>
+                                                        <td
+                                                            class="col-md-10 col-lg-8 border-0 text-dark fw-medium py-2"
+                                                        >
+                                                            Female
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td
+                                                            class="border-0 text-muted py-2 px-0"
+                                                        >
+                                                            Country
+                                                        </td>
+                                                        <td
+                                                            class="col-md-10 col-lg-8 border-0 text-dark fw-medium py-2"
+                                                        >
+                                                            Bangladesh
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+                        </aside>
+                        <div class="col-lg-8 pt-4 pb-2 pb-sm-4">
+                            <div
+                                class="d-flex align-items-center mt-sm-n1 pb-4 mb-0 mb-lg-1 mb-xl-3"
+                            >
+                                <h1 class="h2 mb-4">Overview</h1>
+                                <a
+                                    class="btn btn-sm btn-secondary ms-auto"
+                                    href="#infoEditModal"
+                                    data-bs-toggle="modal"
+                                    ><i class="ai-edit ms-n1 me-2"></i>Edit
+                                    info</a
+                                >
+                                <div
+                                    class="modal fade"
+                                    id="infoEditModal"
+                                    tabindex="-1"
+                                    role="dialog"
+                                    data-focus-input="#"
+                                >
+                                    <div
+                                        class="modal-dialog modal-dialog-scrollable"
+                                        role="document"
+                                    >
+                                        <div class="modal-content">
+                                            <div
+                                                class="modal-header d-block position-relative border-0 pb-3"
+                                            >
+                                                <form
+                                                    class="position-relative w-100"
+                                                >
+                                                    <h3 class="h6 mb-0 me-3">
+                                                        Edit Info
+                                                    </h3>
+                                                    <button
+                                                        class="btn-close position-absolute top-50 end-0 translate-middle-y m-0 me-n1"
+                                                        type="reset"
+                                                        data-bs-dismiss="modal"
+                                                    ></button>
+                                                </form>
+                                            </div>
+                                            <div class="modal-body pt-3">
+                                                <div
+                                                    class="row g-3 g-sm-4 mt-0 mt-lg-2"
+                                                >
+                                                    <div class="col-sm-12">
+                                                        <label
+                                                            class="form-label"
+                                                            for="infoPic"
+                                                            >Profile
+                                                            picture</label
+                                                        >
+                                                        <div class="dropdown">
+                                                            <a
+                                                                class="d-flex flex-column justify-content-end position-relative overflow-hidden rounded-circle bg-size-cover bg-position-center flex-shrink-0"
+                                                                href="#"
+                                                                data-bs-toggle="dropdown"
+                                                                aria-expanded="false"
+                                                                style="
+                                                                    width: 80px;
+                                                                    height: 80px;
+                                                                    background-image: url(assets/img/avatar/02.jpg);
+                                                                "
+                                                                ><span
+                                                                    class="d-block text-light text-center lh-1 pb-1"
+                                                                    style="
+                                                                        background-color: rgba(
+                                                                            0,
+                                                                            0,
+                                                                            0,
+                                                                            0.5
+                                                                        );
+                                                                    "
+                                                                    ><i
+                                                                        class="ai-camera"
+                                                                    ></i></span
+                                                            ></a>
+                                                            <div
+                                                                class="dropdown-menu my-1"
+                                                            >
+                                                                <a
+                                                                    class="dropdown-item fw-normal"
+                                                                    href="#"
+                                                                    ><i
+                                                                        class="ai-camera fs-base opacity-70 me-2"
+                                                                    ></i
+                                                                    >Upload new
+                                                                    photo</a
+                                                                ><a
+                                                                    class="dropdown-item text-danger fw-normal"
+                                                                    href="#"
+                                                                    ><i
+                                                                        class="ai-trash fs-base me-2"
+                                                                    ></i
+                                                                    >Delete
+                                                                    photo</a
+                                                                >
+                                                            </div>
+                                                        </div>
+                                                        <div class="ps-3">
+                                                            <p
+                                                                class="fs-sm text-muted mb-0"
+                                                            >
+                                                                PNG or JPG no
+                                                                bigger than
+                                                                1000px wide and
+                                                                tall.
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12">
+                                                        <label
+                                                            class="form-label"
+                                                            for="infoEmail"
+                                                            >Email</label
+                                                        >
+                                                        <input
+                                                            class="form-control mb-0 me-3"
+                                                            name="infoEmail"
+                                                            type="email"
+                                                            placeholder="example@example.com"
+                                                        />
+                                                    </div>
+                                                    <div class="col-sm-12">
+                                                        <label
+                                                            class="form-label"
+                                                            for="infoBio"
+                                                            >Bio</label
+                                                        >
+                                                        <textarea
+                                                            class="form-control"
+                                                            rows="3"
+                                                            name="infoBio"
+                                                            placeholder="Add a bio"
+                                                        ></textarea>
+                                                    </div>
+                                                    <div class="col-sm-12">
+                                                        <label
+                                                            class="form-label"
+                                                            for="infoWebsite"
+                                                            >Website</label
+                                                        >
+                                                        <input
+                                                            class="form-control mb-0 me-3"
+                                                            name="infoWebsite"
+                                                            type="text"
+                                                            placeholder="example.com"
+                                                        />
+                                                    </div>
+                                                    <div class="col-sm-12">
+                                                        <label
+                                                            class="form-label"
+                                                            for="infoSocialmedia"
+                                                            >Social-media</label
+                                                        >
+                                                        <input
+                                                            class="form-control mb-0 me-3"
+                                                            name="infoSocialmedia"
+                                                            type="text"
+                                                            placeholder="example.com"
+                                                        />
+                                                    </div>
+                                                    <div class="col-sm-12">
+                                                        <label
+                                                            class="form-label"
+                                                            for="infoGender"
+                                                            >Gender</label
+                                                        >
+                                                        <input
+                                                            class="form-control mb-0 me-3"
+                                                            name="infoGender"
+                                                            type="text"
+                                                            placeholder="M"
+                                                        />
+                                                    </div>
+                                                    <div class="col-sm-12">
+                                                        <label
+                                                            class="form-label"
+                                                            for="infoCountry"
+                                                            >Country</label
+                                                        >
+                                                        <input
+                                                            class="form-control mb-0 me-3"
+                                                            name="infoCountry"
+                                                            type="text"
+                                                            placeholder="X"
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    class="col-12 d-flex justify-content-center pt-3"
+                                                >
+                                                    <button
+                                                        class="btn btn-primary ms-3"
+                                                        type="button"
+                                                    >
+                                                        Save
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Basic info-->
+                            <section
+                                class="card border-0 py-1 p-md-2 p-xl-3 p-xxl-4 mb-4"
+                            >
+                                <div class="card-body">
+                                    <div
+                                        class="d-flex align-items-center mt-sm-n1 pb-4 mb-0 mb-lg-1 mb-xl-3"
+                                    >
+                                        <i
+                                            class="ai-user text-primary lead pe-1 me-2"
+                                        ></i>
+                                        <h2 class="h4 mb-0">Bio</h2>
+                                    </div>
+                                    <div class="d-md-flex align-items-center">
+                                        We are no better than bots. Change my
+                                        mind.
+                                    </div>
+                                </div>
+                            </section>
+
+                            <section
+                                class="card border-0 py-1 p-md-2 p-xl-3 p-xxl-4 mb-4"
+                            >
+                                <div class="card-body">
+                                    <div
+                                        class="d-flex align-items-center mt-sm-n1 pb-4 mb-0 mb-lg-1 mb-xl-3"
+                                    >
+                                        <i
+                                            class="ai-star text-primary lead pe-1 me-2"
+                                        ></i>
+                                        <h2 class="h4 mb-0">
+                                            Research Interest
+                                        </h2>
+                                        <a
+                                            class="btn btn-sm btn-secondary ms-auto"
+                                            href="#interestAddModal"
+                                            data-bs-toggle="modal"
+                                            ><i
+                                                class="ai-circle-plus ms-n1 me-2"
+                                            ></i
+                                            >Add</a
+                                        >
+                                        <div
+                                            class="modal fade"
+                                            id="interestAddModal"
+                                            tabindex="-1"
+                                            role="dialog"
+                                            data-focus-input="#"
+                                        >
+                                            <div
+                                                class="modal-dialog modal-dialog-scrollable"
+                                                role="document"
+                                            >
+                                                <div class="modal-content">
+                                                    <div
+                                                        class="modal-header d-block position-relative border-0 pb-3"
+                                                    >
+                                                        <form
+                                                            class="position-relative w-100"
+                                                        >
+                                                            <h3
+                                                                class="h6 mb-0 me-3"
+                                                            >
+                                                                Add Research
+                                                                Interest
+                                                            </h3>
+                                                            <button
+                                                                class="btn-close position-absolute top-50 end-0 translate-middle-y m-0 me-n1"
+                                                                type="reset"
+                                                                data-bs-dismiss="modal"
+                                                            ></button>
+                                                        </form>
+                                                    </div>
+                                                    <div
+                                                        class="modal-body pt-3"
+                                                    >
+                                                        <div
+                                                            class="row g-3 g-sm-4 mt-0 mt-lg-2"
+                                                        >
+                                                            <div
+                                                                class="col-sm-12"
+                                                            >
+                                                                <label
+                                                                    class="form-label"
+                                                                    for="interest"
+                                                                    >Interest</label
+                                                                >
+                                                                <input
+                                                                    class="form-control mb-0 me-3"
+                                                                    name="interest"
+                                                                    type="text"
+                                                                    placeholder=""
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                        <div
+                                                            class="col-12 d-flex justify-content-center pt-3"
+                                                        >
+                                                            <button
+                                                                class="btn btn-primary ms-3"
+                                                                type="button"
+                                                            >
+                                                                Save
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="d-md-flex align-items-center">
+                                        <span
+                                            class="badge bg-faded-info text-info fs-sm"
+                                            >ML</span
+                                        >
+                                        <span
+                                            class="badge bg-faded-primary text-primary fs-sm"
+                                            >NLP</span
+                                        >
+                                    </div>
+                                </div>
+                            </section>
+
+                            <section
+                                class="card border-0 py-1 p-md-2 p-xl-3 p-xxl-4 mb-4"
+                            >
+                                <div class="card-body">
+                                    <div
+                                        class="d-flex align-items-center mt-sm-n1"
+                                    >
+                                        <i
+                                            class="ai-open-book text-primary lead pe-1 me-2"
+                                        ></i>
+                                        <h2 class="h4 mb-0">Education</h2>
+                                        <a
+                                            class="btn btn-sm btn-secondary ms-auto"
+                                            href="#eduAddModal"
+                                            data-bs-toggle="modal"
+                                            ><i
+                                                class="ai-circle-plus ms-n1 me-2"
+                                            ></i
+                                            >Add</a
+                                        >
+                                        <div
+                                            class="modal fade"
+                                            id="eduAddModal"
+                                            tabindex="-1"
+                                            role="dialog"
+                                            data-focus-input="#"
+                                        >
+                                            <div
+                                                class="modal-dialog modal-dialog-scrollable"
+                                                role="document"
+                                            >
+                                                <div class="modal-content">
+                                                    <div
+                                                        class="modal-header d-block position-relative border-0 pb-3"
+                                                    >
+                                                        <form
+                                                            class="position-relative w-100"
+                                                        >
+                                                            <h3
+                                                                class="h6 mb-0 me-3"
+                                                            >
+                                                                Add Educational
+                                                                Record
+                                                            </h3>
+                                                            <button
+                                                                class="btn-close position-absolute top-50 end-0 translate-middle-y m-0 me-n1"
+                                                                type="reset"
+                                                                data-bs-dismiss="modal"
+                                                            ></button>
+                                                        </form>
+                                                    </div>
+                                                    <div
+                                                        class="modal-body pt-3"
+                                                    >
+                                                        <div
+                                                            class="row g-3 g-sm-4 mt-0 mt-lg-2"
+                                                        >
+                                                            <div
+                                                                class="col-sm-6"
+                                                            >
+                                                                <label
+                                                                    class="form-label"
+                                                                    for="eduDegree"
+                                                                    >Degree</label
+                                                                >
+                                                                <input
+                                                                    class="form-control mb-0 me-3"
+                                                                    name="eduDegree"
+                                                                    type="text"
+                                                                    placeholder="BSc"
+                                                                />
+                                                            </div>
+                                                            <div
+                                                                class="col-sm-6"
+                                                            >
+                                                                <label
+                                                                    class="form-label"
+                                                                    for="eduMajor"
+                                                                    >Major</label
+                                                                >
+                                                                <input
+                                                                    class="form-control mb-0 me-3"
+                                                                    name="eduMajor"
+                                                                    type="text"
+                                                                    placeholder="CSE"
+                                                                />
+                                                            </div>
+
+                                                            <div
+                                                                class="col-sm-6"
+                                                            >
+                                                                <label
+                                                                    class="form-label"
+                                                                    for="eduInstitue"
+                                                                    >Institue</label
+                                                                >
+                                                                <input
+                                                                    class="form-control"
+                                                                    name="eduInstitue"
+                                                                    type="text"
+                                                                    placeholder="Abed University"
+                                                                />
+                                                            </div>
+                                                            <div
+                                                                class="col-sm-6"
+                                                            >
+                                                                <label
+                                                                    class="form-label"
+                                                                    for="eduCountry"
+                                                                    >Country</label
+                                                                >
+                                                                <input
+                                                                    class="form-control"
+                                                                    name="eduCountry"
+                                                                    type="text"
+                                                                    placeholder="BD"
+                                                                />
+                                                            </div>
+
+                                                            <div
+                                                                class="col-sm-6"
+                                                            >
+                                                                <label
+                                                                    class="form-label"
+                                                                    for="eduFromYear"
+                                                                    >From
+                                                                    Year</label
+                                                                >
+                                                                <input
+                                                                    class="form-control"
+                                                                    name="eduFromYear"
+                                                                    type="date"
+                                                                />
+                                                            </div>
+                                                            <div
+                                                                class="col-sm-6"
+                                                            >
+                                                                <label
+                                                                    class="form-label"
+                                                                    for="eduToYear"
+                                                                    >To
+                                                                    Year</label
+                                                                >
+                                                                <input
+                                                                    class="form-control"
+                                                                    name="eduToYear"
+                                                                    type="date"
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                        <div
+                                                            class="col-12 d-flex justify-content-center pt-3"
+                                                        >
+                                                            <button
+                                                                class="btn btn-primary ms-3"
+                                                                type="button"
+                                                            >
+                                                                Save
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="card p-3 mt-2 mt-lg-3 rounded-3"
+                                    >
+                                        <div
+                                            class="d-flex justify-between pb-1 mb-1"
+                                        >
+                                            <h3
+                                                class="h6 mb-0 me-3"
+                                                style="flex: 1"
+                                            >
+                                                MSc. in CSE
+                                            </h3>
+                                            <a
+                                                class="btn btn-sm btn-secondary ms-auto"
+                                                href="#eduEditModal"
+                                                data-bs-toggle="modal"
+                                                ><i class="ai-edit"></i
+                                            ></a>
+                                            <a
+                                                class="btn btn-sm btn-secondary ms-auto"
+                                                href="#"
+                                                ><i class="ai-trash"></i
+                                            ></a>
+                                        </div>
+                                        <p class="mb-0">BRAC University</p>
+                                        <p class="mb-0">Jan 2018 - Dec 2020</p>
+                                        <div
+                                            class="modal fade"
+                                            id="eduEditModal"
+                                            tabindex="-1"
+                                            role="dialog"
+                                            data-focus-input="#"
+                                        >
+                                            <div
+                                                class="modal-dialog modal-dialog-scrollable"
+                                                role="document"
+                                            >
+                                                <div class="modal-content">
+                                                    <div
+                                                        class="modal-header d-block position-relative border-0 pb-3"
+                                                    >
+                                                        <form
+                                                            class="position-relative w-100"
+                                                        >
+                                                            <h3
+                                                                class="h6 mb-0 me-3"
+                                                            >
+                                                                Edit Educational
+                                                                Record
+                                                            </h3>
+                                                            <button
+                                                                class="btn-close position-absolute top-50 end-0 translate-middle-y m-0 me-n1"
+                                                                type="reset"
+                                                                data-bs-dismiss="modal"
+                                                            ></button>
+                                                        </form>
+                                                    </div>
+                                                    <div
+                                                        class="modal-body pt-3"
+                                                    >
+                                                        <div
+                                                            class="row g-3 g-sm-4 mt-0 mt-lg-2"
+                                                        >
+                                                            <div
+                                                                class="col-sm-6"
+                                                            >
+                                                                <label
+                                                                    class="form-label"
+                                                                    for="eduDegree"
+                                                                    >Degree</label
+                                                                >
+                                                                <input
+                                                                    class="form-control mb-0 me-3"
+                                                                    name="eduDegree"
+                                                                    type="text"
+                                                                    placeholder="BSc"
+                                                                />
+                                                            </div>
+                                                            <div
+                                                                class="col-sm-6"
+                                                            >
+                                                                <label
+                                                                    class="form-label"
+                                                                    for="eduMajor"
+                                                                    >Major</label
+                                                                >
+                                                                <input
+                                                                    class="form-control mb-0 me-3"
+                                                                    name="eduMajor"
+                                                                    type="text"
+                                                                    placeholder="CSE"
+                                                                />
+                                                            </div>
+
+                                                            <div
+                                                                class="col-sm-6"
+                                                            >
+                                                                <label
+                                                                    class="form-label"
+                                                                    for="eduInstitue"
+                                                                    >Institue</label
+                                                                >
+                                                                <input
+                                                                    class="form-control"
+                                                                    name="eduInstitue"
+                                                                    type="text"
+                                                                    placeholder="Abed University"
+                                                                />
+                                                            </div>
+                                                            <div
+                                                                class="col-sm-6"
+                                                            >
+                                                                <label
+                                                                    class="form-label"
+                                                                    for="eduCountry"
+                                                                    >Country</label
+                                                                >
+                                                                <input
+                                                                    class="form-control"
+                                                                    name="eduCountry"
+                                                                    type="text"
+                                                                    placeholder="BD"
+                                                                />
+                                                            </div>
+
+                                                            <div
+                                                                class="col-sm-6"
+                                                            >
+                                                                <label
+                                                                    class="form-label"
+                                                                    for="eduFromYear"
+                                                                    >From
+                                                                    Year</label
+                                                                >
+                                                                <input
+                                                                    class="form-control"
+                                                                    name="eduFromYear"
+                                                                    type="date"
+                                                                />
+                                                            </div>
+                                                            <div
+                                                                class="col-sm-6"
+                                                            >
+                                                                <label
+                                                                    class="form-label"
+                                                                    for="eduToYear"
+                                                                    >To
+                                                                    Year</label
+                                                                >
+                                                                <input
+                                                                    class="form-control"
+                                                                    name="eduToYear"
+                                                                    type="date"
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                        <div
+                                                            class="col-12 d-flex justify-content-center pt-3"
+                                                        >
+                                                            <button
+                                                                class="btn btn-primary ms-3"
+                                                                type="button"
+                                                            >
+                                                                Save
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <section
+                                class="card border-0 py-1 p-md-2 p-xl-3 p-xxl-4 mb-4"
+                            >
+                                <div class="card-body">
+                                    <div
+                                        class="d-flex align-items-center mt-sm-n1"
+                                    >
+                                        <i
+                                            class="ai-award text-primary lead pe-1 me-2"
+                                        ></i>
+                                        <h2 class="h4 mb-0">Research Work</h2>
+                                        <a
+                                            class="btn btn-sm btn-secondary ms-auto"
+                                            href="#workAddModal"
+                                            data-bs-toggle="modal"
+                                            ><i
+                                                class="ai-circle-plus ms-n1 me-2"
+                                            ></i
+                                            >Add</a
+                                        >
+                                        <div
+                                            class="modal fade"
+                                            id="workAddModal"
+                                            tabindex="-1"
+                                            role="dialog"
+                                            data-focus-input="#"
+                                        >
+                                            <div
+                                                class="modal-dialog modal-dialog-scrollable"
+                                                role="document"
+                                            >
+                                                <div class="modal-content">
+                                                    <div
+                                                        class="modal-header d-block position-relative border-0 pb-3"
+                                                    >
+                                                        <form
+                                                            class="position-relative w-100"
+                                                        >
+                                                            <h3
+                                                                class="h6 mb-0 me-3"
+                                                            >
+                                                                Add Research
+                                                                Work
+                                                            </h3>
+                                                            <button
+                                                                class="btn-close position-absolute top-50 end-0 translate-middle-y m-0 me-n1"
+                                                                type="reset"
+                                                                data-bs-dismiss="modal"
+                                                            ></button>
+                                                        </form>
+                                                    </div>
+                                                    <div
+                                                        class="modal-body pt-3"
+                                                    >
+                                                        <div
+                                                            class="row g-3 g-sm-4 mt-0 mt-lg-2"
+                                                        >
+                                                            <div
+                                                                class="col-sm-12"
+                                                            >
+                                                                <label
+                                                                    class="form-label"
+                                                                    for="workTitle"
+                                                                    >Title</label
+                                                                >
+                                                                <input
+                                                                    class="form-control mb-0 me-3"
+                                                                    name="workTitle"
+                                                                    type="text"
+                                                                    placeholder=""
+                                                                />
+                                                            </div>
+                                                            <div
+                                                                class="col-sm-6"
+                                                            >
+                                                                <label
+                                                                    class="form-label"
+                                                                    for="workYear"
+                                                                    >Year</label
+                                                                >
+                                                                <input
+                                                                    class="form-control mb-0 me-3"
+                                                                    name="workTitle"
+                                                                    type="text"
+                                                                    placeholder=""
+                                                                />
+                                                            </div>
+
+                                                            <div
+                                                                class="col-sm-6"
+                                                            >
+                                                                <label
+                                                                    class="form-label"
+                                                                    for="workLink"
+                                                                    >Link</label
+                                                                >
+                                                                <input
+                                                                    class="form-control"
+                                                                    name="workLink"
+                                                                    type="text"
+                                                                    placeholder=""
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                        <div
+                                                            class="col-12 d-flex justify-content-center pt-3"
+                                                        >
+                                                            <button
+                                                                class="btn btn-primary ms-3"
+                                                                type="button"
+                                                            >
+                                                                Save
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="card p-3 mt-2 mt-lg-3 rounded-3"
+                                    >
+                                        <div
+                                            class="d-flex align-items-center pb-1 mb-1"
+                                        >
+                                            <h3
+                                                class="h6 mb-0 me-3"
+                                                style="flex: 1"
+                                            >
+                                                Can contextualizing user
+                                                embeddings improve sarcasm and
+                                                hate speech detection?
+                                            </h3>
+                                            <a
+                                                class="btn btn-sm btn-secondary ms-auto"
+                                                href="#workEditModal"
+                                                data-bs-toggle="modal"
+                                                ><i class="ai-edit"></i
+                                            ></a>
+                                            <a
+                                                class="btn btn-sm btn-secondary ms-auto"
+                                                href="#"
+                                                ><i class="ai-trash"></i
+                                            ></a>
+                                        </div>
+                                        <p class="mb-0">2022</p>
+                                        <p class="mb-0">
+                                            https://aclanthology.org/2022.nlpcss-1.14
+                                        </p>
+                                        <div
+                                            class="modal fade"
+                                            id="workEditModal"
+                                            tabindex="-1"
+                                            role="dialog"
+                                            data-focus-input="#"
+                                        >
+                                            <div
+                                                class="modal-dialog modal-dialog-scrollable"
+                                                role="document"
+                                            >
+                                                <div class="modal-content">
+                                                    <div
+                                                        class="modal-header d-block position-relative border-0 pb-3"
+                                                    >
+                                                        <form
+                                                            class="position-relative w-100"
+                                                        >
+                                                            <h3
+                                                                class="h6 mb-0 me-3"
+                                                            >
+                                                                Edit Research
+                                                                Work
+                                                            </h3>
+                                                            <button
+                                                                class="btn-close position-absolute top-50 end-0 translate-middle-y m-0 me-n1"
+                                                                type="reset"
+                                                                data-bs-dismiss="modal"
+                                                            ></button>
+                                                        </form>
+                                                    </div>
+                                                    <div
+                                                        class="modal-body pt-3"
+                                                    >
+                                                        <div
+                                                            class="row g-3 g-sm-4 mt-0 mt-lg-2"
+                                                        >
+                                                            <div
+                                                                class="col-sm-12"
+                                                            >
+                                                                <label
+                                                                    class="form-label"
+                                                                    for="workTitle"
+                                                                    >Title</label
+                                                                >
+                                                                <input
+                                                                    class="form-control mb-0 me-3"
+                                                                    name="workTitle"
+                                                                    type="text"
+                                                                    placeholder=""
+                                                                />
+                                                            </div>
+                                                            <div
+                                                                class="col-sm-6"
+                                                            >
+                                                                <label
+                                                                    class="form-label"
+                                                                    for="workYear"
+                                                                    >Year</label
+                                                                >
+                                                                <input
+                                                                    class="form-control mb-0 me-3"
+                                                                    name="workTitle"
+                                                                    type="text"
+                                                                    placeholder=""
+                                                                />
+                                                            </div>
+
+                                                            <div
+                                                                class="col-sm-6"
+                                                            >
+                                                                <label
+                                                                    class="form-label"
+                                                                    for="workLink"
+                                                                    >Link</label
+                                                                >
+                                                                <input
+                                                                    class="form-control"
+                                                                    name="workLink"
+                                                                    type="text"
+                                                                    placeholder=""
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                        <div
+                                                            class="col-12 d-flex justify-content-center pt-3"
+                                                        >
+                                                            <button
+                                                                class="btn btn-primary ms-3"
+                                                                type="button"
+                                                            >
+                                                                Save
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <!-- Footer-->
+        <footer
+            class="footer bg-dark position-relative pb-2 pt-md-1 py-lg-2 py-xl-3"
+        >
+            <div
+                class="dark-mode container position-relative zindex-2 pt-2 pb-2"
+            >
+                <!-- Nav + Switcher-->
+                <div class="border-bottom"></div>
+                <!-- Logo + Socials + Cards-->
+                <div class="d-sm-flex align-items-center pt-2">
+                    <div class="container fs-sm text-center">
+                        <span class="text-muted"
+                            >&copy; ResearchFreak. All rights reserved.</span
+                        >
+                    </div>
+                </div>
+            </div>
+            <div class="pt-5 pt-lg-0"></div>
+        </footer>
+        <!-- Back to top button-->
+        <a class="btn-scroll-top" href="#top" data-scroll>
+            <svg
+                viewBox="0 0 40 40"
+                fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <circle
+                    cx="20"
+                    cy="20"
+                    r="19"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-miterlimit="10"
+                ></circle></svg
+            ><i class="ai-arrow-up"></i
+        ></a>
+        <!-- Vendor scripts: js libraries and plugins-->
+        <script src="/assets/js/bootstrap.bundle.min.js"></script>
+        <script src="/assets/js/smooth-scroll.polyfills.min.js"></script>
+        <!-- Main theme script-->
+        <script src="/assets/js/theme.min.js"></script>
+    </body>
+</html>

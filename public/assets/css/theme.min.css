@@ -29,7 +29,7 @@
     --ar-warning: #edcb50;
     --ar-danger: #ed5050;
     --ar-light: #fff;
-    --ar-dark: #121519;
+    --ar-dark: #111111;
     --ar-primary-rgb: 68, 140, 116;
     --ar-secondary-rgb: 237, 241, 245;
     --ar-success-rgb: 63, 202, 144;
@@ -624,7 +624,7 @@ progress {
     .container-md,
     .container-sm,
     .container {
-        max-width: 1320px;
+        max-width: 90%;
     }
 }
 .row {
