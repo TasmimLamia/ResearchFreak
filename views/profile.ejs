@@ -227,257 +227,13 @@
             <div class="dark-mode">
                 <!-- Navbar. Remove 'fixed-top' class to make the navigation bar scrollable with the page-->
                 <header class="navbar navbar-expand-lg fixed-top">
-                    <div class="container">
-                        <a class="navbar-brand pe-sm-3" href="/"
-                            ><img
-                                class="pe-sm-1"
-                                src="/assets/img/RF.png"
-                                width="48"
-                                height="auto"
-                                alt=""
-                            />ResearchFreak</a
-                        >
-                        <!-- <a
-                            class="btn btn-primary btn-sm fs-sm order-lg-3 d-none d-sm-inline-flex"
-                            href="#"
-                            target="_blank"
-                            rel="noopener"
-                            ><i class="ai-cart fs-xl me-2 ms-n1"></i>Buy now</a
-                        > -->
-                        <!-- User signed in state. Account dropdown on screens > 576px-->
-                        <div class="dropdown nav d-none d-sm-block order-lg-3">
-                            <a
-                                class="nav-link d-flex align-items-center p-0"
-                                href="#"
-                                data-bs-toggle="dropdown"
-                                aria-expanded="false"
-                                ><img
-                                    class="border rounded-circle"
-                                    src="/assets/img/RF.png"
-                                    width="45"
-                                    alt="Isabella Bocouse"
-                                />
-                                <div class="ps-2">
-                                    <div class="fs-xs lh-1 opacity-60">
-                                        Hello,
-                                    </div>
-                                    <div class="fs-sm dropdown-toggle">
-                                        Isabella
-                                    </div>
-                                </div></a
-                            >
-                            <div class="dropdown-menu dropdown-menu-end my-1">
-                                <h6
-                                    class="dropdown-header fs-xs fw-medium text-muted text-uppercase pb-1"
-                                >
-                                    Account
-                                </h6>
-                                <a
-                                    class="dropdown-item"
-                                    href="account-overview.html"
-                                    ><i
-                                        class="ai-user-check fs-lg opacity-70 me-2"
-                                    ></i
-                                    >Overview</a
-                                >
-                                <div class="dropdown-divider"></div>
-                                <a
-                                    class="dropdown-item"
-                                    href="account-signin.html"
-                                    ><i
-                                        class="ai-logout fs-lg opacity-70 me-2"
-                                    ></i
-                                    >Sign out</a
-                                >
-                            </div>
-                        </div>
-                        <button
-                            class="navbar-toggler ms-sm-3"
-                            type="button"
-                            data-bs-toggle="collapse"
-                            data-bs-target="#navbarNav"
-                        >
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <nav class="collapse navbar-collapse" id="navbarNav">
-                            <ul
-                                class="navbar-nav navbar-nav-scroll m-auto"
-                                style="--ar-scroll-height: 520px"
-                            >
-                                <li class="nav-item">
-                                    <a
-                                        class="nav-link active"
-                                        href="components/typography.html"
-                                        >Profile</a
-                                    >
-                                </li>
-                                <li class="nav-item">
-                                    <a
-                                        class="nav-link"
-                                        href="docs/getting-started.html"
-                                        >Connections</a
-                                    >
-                                </li>
-                                <li class="nav-item">
-                                    <a
-                                        class="nav-link"
-                                        href="docs/getting-started.html"
-                                        >Projects</a
-                                    >
-                                </li>
-                                <li class="nav-item">
-                                    <a
-                                        class="nav-link"
-                                        href="docs/getting-started.html"
-                                        >Search</a
-                                    >
-                                </li>
-                                <!-- User signed in state. Account dropdown on screens > 576px-->
-                                <li
-                                    class="nav-item dropdown d-sm-none border-top mt-2 pt-2"
-                                >
-                                    <a
-                                        class="nav-link"
-                                        href="#"
-                                        data-bs-toggle="dropdown"
-                                        aria-expanded="false"
-                                        ><img
-                                            class="border rounded-circle"
-                                            src="/assets/img/RF.png"
-                                            width="45"
-                                            alt="Isabella Bocouse"
-                                        />
-                                        <div class="ps-2">
-                                            <div class="fs-xs lh-1 opacity-60">
-                                                Hello,
-                                            </div>
-                                            <div class="fs-sm dropdown-toggle">
-                                                Isabella
-                                            </div>
-                                        </div></a
-                                    >
-                                    <div class="dropdown-menu">
-                                        <h6
-                                            class="dropdown-header fs-xs fw-medium text-muted text-uppercase pb-1"
-                                        >
-                                            Account
-                                        </h6>
-                                        <a
-                                            class="dropdown-item"
-                                            href="account-overview.html"
-                                            ><i
-                                                class="ai-user-check fs-lg opacity-70 me-2"
-                                            ></i
-                                            >Overview</a
-                                        >
-                                        <div class="dropdown-divider"></div>
-                                        <a
-                                            class="dropdown-item"
-                                            href="account-signin.html"
-                                            ><i
-                                                class="ai-logout fs-lg opacity-70 me-2"
-                                            ></i
-                                            >Sign out</a
-                                        >
-                                    </div>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
+                    <%- include('./partials/nav'); %>
                 </header>
                 <div class="container py-5 mt-4 mt-lg-5 mb-lg-4 my-xl-5">
                     <div class="row pt-sm-2 pt-lg-0">
                         <!-- Sidebar (offcanvas on sreens < 992px)-->
                         <aside class="col-lg-4 pe-lg-2 pe-xl-3 mt-n3">
-                            <div class="position-lg-sticky top-0">
-                                <div
-                                    class="d-none d-lg-block"
-                                    style="padding-top: 105px"
-                                ></div>
-                                <div
-                                    class="offcanvas-lg offcanvas-start"
-                                    id="sidebarAccount"
-                                >
-                                    <button
-                                        class="btn-close position-absolute top-0 end-0 mt-3 me-3 d-lg-none"
-                                        type="button"
-                                        data-bs-dismiss="offcanvas"
-                                        data-bs-target="#sidebarAccount"
-                                    ></button>
-                                    <div class="offcanvas-body">
-                                        <div class="pb-2 pb-lg-0 mb-4 mb-lg-5">
-                                            <img
-                                                class="d-block rounded-circle mb-2"
-                                                src="/assets/img/RF.png"
-                                                width="80"
-                                                alt="Isabella Bocouse"
-                                            />
-                                            <h3 class="h5 mb-1">
-                                                Isabella Bocouse
-                                            </h3>
-                                            <!-- <p class="fs-sm text-muted mb-0">
-                                                bocouse@example.com
-                                            </p> -->
-                                        </div>
-                                        <nav
-                                            class="nav flex-column pb-2 pb-lg-4 mb-3"
-                                        >
-                                            <table class="table mb-0">
-                                                <tbody>
-                                                    <tr>
-                                                        <td
-                                                            class="border-0 text-muted py-2 px-0"
-                                                        >
-                                                            Website
-                                                        </td>
-                                                        <td
-                                                            class="col-md-10 col-lg-8 border-0 text-dark fw-medium py-2"
-                                                        >
-                                                            https://isabella-bocouse.com
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td
-                                                            class="border-0 text-muted py-2 px-0"
-                                                        >
-                                                            Social-media
-                                                        </td>
-                                                        <td
-                                                            class="col-md-10 col-lg-8 border-0 text-dark fw-medium py-2"
-                                                        >
-                                                            https://linkedin.com/r/isabella-bocouse
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td
-                                                            class="border-0 text-muted py-2 px-0"
-                                                        >
-                                                            Gender
-                                                        </td>
-                                                        <td
-                                                            class="col-md-10 col-lg-8 border-0 text-dark fw-medium py-2"
-                                                        >
-                                                            Female
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td
-                                                            class="border-0 text-muted py-2 px-0"
-                                                        >
-                                                            Country
-                                                        </td>
-                                                        <td
-                                                            class="col-md-10 col-lg-8 border-0 text-dark fw-medium py-2"
-                                                        >
-                                                            Bangladesh
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </nav>
-                                    </div>
-                                </div>
-                            </div>
+                            <%- include('./partials/sidebar'); %>
                         </aside>
                         <div class="col-lg-8 pt-4 pb-2 pb-sm-4">
                             <div
@@ -488,7 +244,7 @@
                                     class="btn btn-sm btn-secondary ms-auto"
                                     href="#infoEditModal"
                                     data-bs-toggle="modal"
-                                    ><i class="ai-edit ms-n1 me-2"></i>Edit
+                                    ><i class="ai-edit-alt ms-n1 me-2"></i>Edit
                                     info</a
                                 >
                                 <div
@@ -503,23 +259,21 @@
                                         role="document"
                                     >
                                         <div class="modal-content">
-                                            <div
-                                                class="modal-header d-block position-relative border-0 pb-3"
-                                            >
-                                                <form
-                                                    class="position-relative w-100"
-                                                >
-                                                    <h3 class="h6 mb-0 me-3">
-                                                        Edit Info
-                                                    </h3>
-                                                    <button
-                                                        class="btn-close position-absolute top-50 end-0 translate-middle-y m-0 me-n1"
-                                                        type="reset"
-                                                        data-bs-dismiss="modal"
-                                                    ></button>
-                                                </form>
+                                            <div class="modal-header border-0">
+                                                <h4 class="modal-title">
+                                                    Edit Info
+                                                </h4>
+                                                <button
+                                                    class="btn-close"
+                                                    type="button"
+                                                    data-bs-dismiss="modal"
+                                                    aria-label="Close"
+                                                ></button>
                                             </div>
-                                            <div class="modal-body pt-3">
+                                            <form
+                                                class="modal-body needs-validation pt-0"
+                                                novalidate=""
+                                            >
                                                 <div
                                                     class="row g-3 g-sm-4 mt-0 mt-lg-2"
                                                 >
@@ -677,7 +431,7 @@
                                                         Save
                                                     </button>
                                                 </div>
-                                            </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -716,7 +470,7 @@
                                             Research Interest
                                         </h2>
                                         <a
-                                            class="btn btn-sm btn-secondary ms-auto"
+                                            class="btn btn-sm btn-secondary text- ms-auto"
                                             href="#interestAddModal"
                                             data-bs-toggle="modal"
                                             ><i
@@ -737,26 +491,22 @@
                                             >
                                                 <div class="modal-content">
                                                     <div
-                                                        class="modal-header d-block position-relative border-0 pb-3"
+                                                        class="modal-header border-0"
                                                     >
-                                                        <form
-                                                            class="position-relative w-100"
-                                                        >
-                                                            <h3
-                                                                class="h6 mb-0 me-3"
-                                                            >
-                                                                Add Research
-                                                                Interest
-                                                            </h3>
-                                                            <button
-                                                                class="btn-close position-absolute top-50 end-0 translate-middle-y m-0 me-n1"
-                                                                type="reset"
-                                                                data-bs-dismiss="modal"
-                                                            ></button>
-                                                        </form>
+                                                        <h4 class="modal-title">
+                                                            Add Research
+                                                            Interest
+                                                        </h4>
+                                                        <button
+                                                            class="btn-close"
+                                                            type="button"
+                                                            data-bs-dismiss="modal"
+                                                            aria-label="Close"
+                                                        ></button>
                                                     </div>
-                                                    <div
-                                                        class="modal-body pt-3"
+                                                    <form
+                                                        class="modal-body needs-validation pt-0"
+                                                        novalidate=""
                                                     >
                                                         <div
                                                             class="row g-3 g-sm-4 mt-0 mt-lg-2"
@@ -787,7 +537,7 @@
                                                                 Save
                                                             </button>
                                                         </div>
-                                                    </div>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -838,26 +588,22 @@
                                             >
                                                 <div class="modal-content">
                                                     <div
-                                                        class="modal-header d-block position-relative border-0 pb-3"
+                                                        class="modal-header border-0"
                                                     >
-                                                        <form
-                                                            class="position-relative w-100"
-                                                        >
-                                                            <h3
-                                                                class="h6 mb-0 me-3"
-                                                            >
-                                                                Add Educational
-                                                                Record
-                                                            </h3>
-                                                            <button
-                                                                class="btn-close position-absolute top-50 end-0 translate-middle-y m-0 me-n1"
-                                                                type="reset"
-                                                                data-bs-dismiss="modal"
-                                                            ></button>
-                                                        </form>
+                                                        <h4 class="modal-title">
+                                                            Add Educational
+                                                            Record
+                                                        </h4>
+                                                        <button
+                                                            class="btn-close"
+                                                            type="button"
+                                                            data-bs-dismiss="modal"
+                                                            aria-label="Close"
+                                                        ></button>
                                                     </div>
-                                                    <div
-                                                        class="modal-body pt-3"
+                                                    <form
+                                                        class="modal-body needs-validation pt-0"
+                                                        novalidate=""
                                                     >
                                                         <div
                                                             class="row g-3 g-sm-4 mt-0 mt-lg-2"
@@ -965,7 +711,7 @@
                                                                 Save
                                                             </button>
                                                         </div>
-                                                    </div>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -986,10 +732,10 @@
                                                 class="btn btn-sm btn-secondary ms-auto"
                                                 href="#eduEditModal"
                                                 data-bs-toggle="modal"
-                                                ><i class="ai-edit"></i
+                                                ><i class="ai-edit-alt"></i
                                             ></a>
                                             <a
-                                                class="btn btn-sm btn-secondary ms-auto"
+                                                class="btn btn-sm btn-secondary text-danger ms-auto"
                                                 href="#"
                                                 ><i class="ai-trash"></i
                                             ></a>
@@ -1009,26 +755,22 @@
                                             >
                                                 <div class="modal-content">
                                                     <div
-                                                        class="modal-header d-block position-relative border-0 pb-3"
+                                                        class="modal-header border-0"
                                                     >
-                                                        <form
-                                                            class="position-relative w-100"
-                                                        >
-                                                            <h3
-                                                                class="h6 mb-0 me-3"
-                                                            >
-                                                                Edit Educational
-                                                                Record
-                                                            </h3>
-                                                            <button
-                                                                class="btn-close position-absolute top-50 end-0 translate-middle-y m-0 me-n1"
-                                                                type="reset"
-                                                                data-bs-dismiss="modal"
-                                                            ></button>
-                                                        </form>
+                                                        <h4 class="modal-title">
+                                                            Edit Educational
+                                                            Record
+                                                        </h4>
+                                                        <button
+                                                            class="btn-close"
+                                                            type="button"
+                                                            data-bs-dismiss="modal"
+                                                            aria-label="Close"
+                                                        ></button>
                                                     </div>
-                                                    <div
-                                                        class="modal-body pt-3"
+                                                    <form
+                                                        class="modal-body needs-validation pt-0"
+                                                        novalidate=""
                                                     >
                                                         <div
                                                             class="row g-3 g-sm-4 mt-0 mt-lg-2"
@@ -1136,7 +878,7 @@
                                                                 Save
                                                             </button>
                                                         </div>
-                                                    </div>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -1177,26 +919,21 @@
                                             >
                                                 <div class="modal-content">
                                                     <div
-                                                        class="modal-header d-block position-relative border-0 pb-3"
+                                                        class="modal-header border-0"
                                                     >
-                                                        <form
-                                                            class="position-relative w-100"
-                                                        >
-                                                            <h3
-                                                                class="h6 mb-0 me-3"
-                                                            >
-                                                                Add Research
-                                                                Work
-                                                            </h3>
-                                                            <button
-                                                                class="btn-close position-absolute top-50 end-0 translate-middle-y m-0 me-n1"
-                                                                type="reset"
-                                                                data-bs-dismiss="modal"
-                                                            ></button>
-                                                        </form>
+                                                        <h4 class="modal-title">
+                                                            Add Research Work
+                                                        </h4>
+                                                        <button
+                                                            class="btn-close"
+                                                            type="button"
+                                                            data-bs-dismiss="modal"
+                                                            aria-label="Close"
+                                                        ></button>
                                                     </div>
-                                                    <div
-                                                        class="modal-body pt-3"
+                                                    <form
+                                                        class="modal-body needs-validation pt-0"
+                                                        novalidate=""
                                                     >
                                                         <div
                                                             class="row g-3 g-sm-4 mt-0 mt-lg-2"
@@ -1258,7 +995,7 @@
                                                                 Save
                                                             </button>
                                                         </div>
-                                                    </div>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -1281,10 +1018,10 @@
                                                 class="btn btn-sm btn-secondary ms-auto"
                                                 href="#workEditModal"
                                                 data-bs-toggle="modal"
-                                                ><i class="ai-edit"></i
+                                                ><i class="ai-edit-alt"></i
                                             ></a>
                                             <a
-                                                class="btn btn-sm btn-secondary ms-auto"
+                                                class="btn btn-sm btn-secondary text-danger ms-auto"
                                                 href="#"
                                                 ><i class="ai-trash"></i
                                             ></a>
@@ -1306,26 +1043,21 @@
                                             >
                                                 <div class="modal-content">
                                                     <div
-                                                        class="modal-header d-block position-relative border-0 pb-3"
+                                                        class="modal-header border-0"
                                                     >
-                                                        <form
-                                                            class="position-relative w-100"
-                                                        >
-                                                            <h3
-                                                                class="h6 mb-0 me-3"
-                                                            >
-                                                                Edit Research
-                                                                Work
-                                                            </h3>
-                                                            <button
-                                                                class="btn-close position-absolute top-50 end-0 translate-middle-y m-0 me-n1"
-                                                                type="reset"
-                                                                data-bs-dismiss="modal"
-                                                            ></button>
-                                                        </form>
+                                                        <h4 class="modal-title">
+                                                            Edit Research Work
+                                                        </h4>
+                                                        <button
+                                                            class="btn-close"
+                                                            type="button"
+                                                            data-bs-dismiss="modal"
+                                                            aria-label="Close"
+                                                        ></button>
                                                     </div>
-                                                    <div
-                                                        class="modal-body pt-3"
+                                                    <form
+                                                        class="modal-body needs-validation pt-0"
+                                                        novalidate=""
                                                     >
                                                         <div
                                                             class="row g-3 g-sm-4 mt-0 mt-lg-2"
@@ -1387,7 +1119,7 @@
                                                                 Save
                                                             </button>
                                                         </div>
-                                                    </div>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -1403,21 +1135,7 @@
         <footer
             class="footer bg-dark position-relative pb-2 pt-md-1 py-lg-2 py-xl-3"
         >
-            <div
-                class="dark-mode container position-relative zindex-2 pt-2 pb-2"
-            >
-                <!-- Nav + Switcher-->
-                <div class="border-bottom"></div>
-                <!-- Logo + Socials + Cards-->
-                <div class="d-sm-flex align-items-center pt-2">
-                    <div class="container fs-sm text-center">
-                        <span class="text-muted"
-                            >&copy; ResearchFreak. All rights reserved.</span
-                        >
-                    </div>
-                </div>
-            </div>
-            <div class="pt-5 pt-lg-0"></div>
+            <%- include('./partials/footer'); %>
         </footer>
         <!-- Back to top button-->
         <a class="btn-scroll-top" href="#top" data-scroll>

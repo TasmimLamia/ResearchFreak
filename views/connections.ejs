@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Connections · RF</title>
+        <!-- SEO Meta Tags-->
+        <meta name="description" content="ResearchFreak" />
+        <meta name="keywords" content="ResearchFreak" />
+        <meta name="author" content="TasmimLamia" />
+        <!-- Viewport-->
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <!-- Favicon and Touch Icons-->
+        <link
+            rel="apple-touch-icon"
+            sizes="57x57"
+            href="/assets/img/favicons/apple-icon-57x57.png"
+        />
+        <link
+            rel="apple-touch-icon"
+            sizes="60x60"
+            href="/assets/img/favicons/apple-icon-60x60.png"
+        />
+        <link
+            rel="apple-touch-icon"
+            sizes="72x72"
+            href="/assets/img/favicons/apple-icon-72x72.png"
+        />
+        <link
+            rel="apple-touch-icon"
+            sizes="76x76"
+            href="/assets/img/favicons/apple-icon-76x76.png"
+        />
+        <link
+            rel="apple-touch-icon"
+            sizes="114x114"
+            href="/assets/img/favicons/apple-icon-114x114.png"
+        />
+        <link
+            rel="apple-touch-icon"
+            sizes="120x120"
+            href="/assets/img/favicons/apple-icon-120x120.png"
+        />
+        <link
+            rel="apple-touch-icon"
+            sizes="144x144"
+            href="/assets/img/favicons/apple-icon-144x144.png"
+        />
+        <link
+            rel="apple-touch-icon"
+            sizes="152x152"
+            href="/assets/img/favicons/apple-icon-152x152.png"
+        />
+        <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="/assets/img/favicons/apple-icon-180x180.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="192x192"
+            href="/assets/img/favicons/android-icon-192x192.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/assets/img/favicons/favicon-32x32.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="96x96"
+            href="/assets/img/favicons/favicon-96x96.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/assets/img/favicons/favicon-16x16.png"
+        />
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="msapplication-TileColor" content="#ffffff" />
+        <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
+        <meta name="theme-color" content="#ffffff" />
+        <!-- Theme mode-->
+        <script>
+            let mode = window.localStorage.getItem("mode"),
+                root = document.getElementsByTagName("html")[0];
+            // if (mode !== undefined && mode === "dark") {
+            //     root.classList.add("dark-mode");
+            // } else {
+            //     root.classList.remove("dark-mode");
+            // }
+            root.classList.add("dark-mode");
+        </script>
+        <!-- Page loading styles-->
+        <style>
+            .page-loading {
+                position: fixed;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                -webkit-transition: all 0.4s 0.2s ease-in-out;
+                transition: all 0.4s 0.2s ease-in-out;
+                background-color: #fff;
+                opacity: 0;
+                visibility: hidden;
+                z-index: 9999;
+            }
+            .dark-mode .page-loading {
+                background-color: #121519;
+            }
+            .page-loading.active {
+                opacity: 1;
+                visibility: visible;
+            }
+            .page-loading-inner {
+                position: absolute;
+                top: 50%;
+                left: 0;
+                width: 100%;
+                text-align: center;
+                -webkit-transform: translateY(-50%);
+                transform: translateY(-50%);
+                -webkit-transition: opacity 0.2s ease-in-out;
+                transition: opacity 0.2s ease-in-out;
+                opacity: 0;
+            }
+            .page-loading.active > .page-loading-inner {
+                opacity: 1;
+            }
+            .page-loading-inner > span {
+                display: block;
+                font-family: "Inter", sans-serif;
+                font-size: 1rem;
+                font-weight: normal;
+                color: #6f788b;
+            }
+            .dark-mode .page-loading-inner > span {
+                color: #fff;
+                opacity: 0.6;
+            }
+            .page-spinner {
+                display: inline-block;
+                width: 2.75rem;
+                height: 2.75rem;
+                margin-bottom: 0.75rem;
+                vertical-align: text-bottom;
+                background-color: #d7dde2;
+                border-radius: 50%;
+                opacity: 0;
+                -webkit-animation: spinner 0.75s linear infinite;
+                animation: spinner 0.75s linear infinite;
+            }
+            .dark-mode .page-spinner {
+                background-color: rgba(255, 255, 255, 0.25);
+            }
+            @-webkit-keyframes spinner {
+                0% {
+                    -webkit-transform: scale(0);
+                    transform: scale(0);
+                }
+                50% {
+                    opacity: 1;
+                    -webkit-transform: none;
+                    transform: none;
+                }
+            }
+            @keyframes spinner {
+                0% {
+                    -webkit-transform: scale(0);
+                    transform: scale(0);
+                }
+                50% {
+                    opacity: 1;
+                    -webkit-transform: none;
+                    transform: none;
+                }
+            }
+        </style>
+        <!-- Page loading scripts-->
+        <script>
+            (function () {
+                window.onload = function () {
+                    const preloader = document.querySelector(".page-loading");
+                    preloader.classList.remove("active");
+                    setTimeout(function () {
+                        preloader.remove();
+                    }, 1500);
+                };
+            })();
+        </script>
+        <!-- Import Google Font-->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
+            rel="stylesheet"
+            id="google-font"
+        />
+        <!-- Vendor styles-->
+        <!-- Main Theme Styles + Bootstrap-->
+        <link
+            rel="stylesheet"
+            media="screen"
+            href="/assets/css/theme.min.css"
+        />
+        <!-- Customizer generated styles-->
+        <style id="customizer-styles"></style>
+    </head>
+    <!-- Body-->
+    <body>
+        <!-- Page loading spinner-->
+        <div class="page-loading active">
+            <div class="page-loading-inner">
+                <div class="page-spinner"></div>
+                <span>Loading...</span>
+            </div>
+        </div>
+        <!-- Page wrapper-->
+        <main class="page-wrapper">
+            <!-- Page content-->
+            <div class="dark-mode">
+                <!-- Navbar. Remove 'fixed-top' class to make the navigation bar scrollable with the page-->
+                <header class="navbar navbar-expand-lg fixed-top">
+                    <%- include('./partials/nav'); %>
+                </header>
+                <div class="container py-5 mt-4 mt-lg-5 mb-lg-4 my-xl-5">
+                    <div class="row pt-sm-2 pt-lg-0">
+                        <!-- Sidebar (offcanvas on sreens < 992px)-->
+                        <aside class="col-lg-4 pe-lg-2 pe-xl-3 mt-n3">
+                            <%- include('./partials/sidebar'); %>
+                        </aside>
+                        <div class="col-lg-8 pt-4 pb-2 pb-sm-4">
+                            <div
+                                class="d-flex align-items-center mt-sm-n1 pb-4 mb-0 mb-lg-1 mb-xl-3"
+                            >
+                                <h1 class="h2 mb-4">Connections</h1>
+                                <a
+                                    class="btn btn-sm btn-secondary ms-auto"
+                                    href="#reqModal"
+                                    data-bs-toggle="modal"
+                                    ><i class="ai-user-group ms-n1 me-2"></i
+                                    >Requests</a
+                                >
+                                <div
+                                    class="modal fade"
+                                    id="reqModal"
+                                    tabindex="-1"
+                                    role="dialog"
+                                    data-focus-input="#"
+                                >
+                                    <div
+                                        class="modal-dialog modal-dialog-scrollable"
+                                        role="document"
+                                    >
+                                        <div class="modal-content">
+                                            <div class="modal-header border-0">
+                                                <h4 class="modal-title">
+                                                    Requests
+                                                </h4>
+                                                <button
+                                                    class="btn-close"
+                                                    type="button"
+                                                    data-bs-dismiss="modal"
+                                                    aria-label="Close"
+                                                ></button>
+                                            </div>
+                                            <div class="modal-body pt-0">
+                                                <div
+                                                    class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4"
+                                                >
+                                                    <!-- Item-->
+                                                    <div
+                                                        class="col pb-2 pb-sm-3"
+                                                    >
+                                                        <div
+                                                            class="card-hover position-relative bg-secondary rounded-1 p-3 mb-2"
+                                                        >
+                                                            <div class="">
+                                                                <a
+                                                                    class=""
+                                                                    href="#"
+                                                                    id=""
+                                                                    ><img
+                                                                        class="d-block mx-auto"
+                                                                        src="/assets/img/RF.png"
+                                                                        width="226"
+                                                                        alt="Product"
+                                                                /></a>
+                                                            </div>
+                                                        </div>
+                                                        <div
+                                                            class="d-flex mb-1"
+                                                            style="
+                                                                justify-content: center;
+                                                            "
+                                                        >
+                                                            <h3 class="h6 mb-0">
+                                                                <a href="#"
+                                                                    >Connection
+                                                                    1</a
+                                                                >
+                                                            </h3>
+                                                        </div>
+                                                        <div
+                                                            class="d-flex mb-1"
+                                                            style="
+                                                                justify-content: center;
+                                                            "
+                                                        >
+                                                            <a
+                                                                class="btn btn-sm btn-secondary text-success ms-auto"
+                                                                href="#"
+                                                                ><i
+                                                                    class="ai-user-check"
+                                                                ></i></a
+                                                            ><a
+                                                                class="btn btn-sm btn-secondary text-danger ms-auto"
+                                                                href="#"
+                                                                ><i
+                                                                    class="ai-user-x"
+                                                                ></i
+                                                            ></a>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Item-->
+                                                    <div
+                                                        class="col pb-2 pb-sm-3"
+                                                    >
+                                                        <div
+                                                            class="card-hover position-relative bg-secondary rounded-1 p-3 mb-2"
+                                                        >
+                                                            <div class="">
+                                                                <a
+                                                                    class=""
+                                                                    href="#"
+                                                                    id=""
+                                                                    ><img
+                                                                        class="d-block mx-auto"
+                                                                        src="/assets/img/RF.png"
+                                                                        width="226"
+                                                                        alt="Product"
+                                                                /></a>
+                                                            </div>
+                                                        </div>
+                                                        <div
+                                                            class="d-flex mb-1"
+                                                            style="
+                                                                justify-content: center;
+                                                            "
+                                                        >
+                                                            <h3 class="h6 mb-0">
+                                                                <a href="#"
+                                                                    >Connection
+                                                                    1</a
+                                                                >
+                                                            </h3>
+                                                        </div>
+                                                        <div
+                                                            class="d-flex mb-1"
+                                                            style="
+                                                                justify-content: center;
+                                                            "
+                                                        >
+                                                            <a
+                                                                class="btn btn-sm btn-secondary text-success ms-auto"
+                                                                href="#"
+                                                                ><i
+                                                                    class="ai-user-check"
+                                                                ></i></a
+                                                            ><a
+                                                                class="btn btn-sm btn-secondary text-danger ms-auto"
+                                                                href="#"
+                                                                ><i
+                                                                    class="ai-user-x"
+                                                                ></i
+                                                            ></a>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Item-->
+                                                    <div
+                                                        class="col pb-2 pb-sm-3"
+                                                    >
+                                                        <div
+                                                            class="card-hover position-relative bg-secondary rounded-1 p-3 mb-2"
+                                                        >
+                                                            <div class="">
+                                                                <a
+                                                                    class=""
+                                                                    href="#"
+                                                                    id=""
+                                                                    ><img
+                                                                        class="d-block mx-auto"
+                                                                        src="/assets/img/RF.png"
+                                                                        width="226"
+                                                                        alt="Product"
+                                                                /></a>
+                                                            </div>
+                                                        </div>
+                                                        <div
+                                                            class="d-flex mb-1"
+                                                            style="
+                                                                justify-content: center;
+                                                            "
+                                                        >
+                                                            <h3 class="h6 mb-0">
+                                                                <a href="#"
+                                                                    >Connection
+                                                                    1</a
+                                                                >
+                                                            </h3>
+                                                        </div>
+                                                        <div
+                                                            class="d-flex mb-1"
+                                                            style="
+                                                                justify-content: center;
+                                                            "
+                                                        >
+                                                            <a
+                                                                class="btn btn-sm btn-secondary text-success ms-auto"
+                                                                href="#"
+                                                                ><i
+                                                                    class="ai-user-check"
+                                                                ></i></a
+                                                            ><a
+                                                                class="btn btn-sm btn-secondary text-danger ms-auto"
+                                                                href="#"
+                                                                ><i
+                                                                    class="ai-user-x"
+                                                                ></i
+                                                            ></a>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Item-->
+                                                    <div
+                                                        class="col pb-2 pb-sm-3"
+                                                    >
+                                                        <div
+                                                            class="card-hover position-relative bg-secondary rounded-1 p-3 mb-2"
+                                                        >
+                                                            <div class="">
+                                                                <a
+                                                                    class=""
+                                                                    href="#"
+                                                                    id=""
+                                                                    ><img
+                                                                        class="d-block mx-auto"
+                                                                        src="/assets/img/RF.png"
+                                                                        width="226"
+                                                                        alt="Product"
+                                                                /></a>
+                                                            </div>
+                                                        </div>
+                                                        <div
+                                                            class="d-flex mb-1"
+                                                            style="
+                                                                justify-content: center;
+                                                            "
+                                                        >
+                                                            <h3 class="h6 mb-0">
+                                                                <a href="#"
+                                                                    >Connection
+                                                                    1</a
+                                                                >
+                                                            </h3>
+                                                        </div>
+                                                        <div
+                                                            class="d-flex mb-1"
+                                                            style="
+                                                                justify-content: center;
+                                                            "
+                                                        >
+                                                            <a
+                                                                class="btn btn-sm btn-secondary text-success ms-auto"
+                                                                href="#"
+                                                                ><i
+                                                                    class="ai-user-check"
+                                                                ></i></a
+                                                            ><a
+                                                                class="btn btn-sm btn-secondary text-danger ms-auto"
+                                                                href="#"
+                                                                ><i
+                                                                    class="ai-user-x"
+                                                                ></i
+                                                            ></a>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Item-->
+                                                    <div
+                                                        class="col pb-2 pb-sm-3"
+                                                    >
+                                                        <div
+                                                            class="card-hover position-relative bg-secondary rounded-1 p-3 mb-2"
+                                                        >
+                                                            <div class="">
+                                                                <a
+                                                                    class=""
+                                                                    href="#"
+                                                                    id=""
+                                                                    ><img
+                                                                        class="d-block mx-auto"
+                                                                        src="/assets/img/RF.png"
+                                                                        width="226"
+                                                                        alt="Product"
+                                                                /></a>
+                                                            </div>
+                                                        </div>
+                                                        <div
+                                                            class="d-flex mb-1"
+                                                            style="
+                                                                justify-content: center;
+                                                            "
+                                                        >
+                                                            <h3 class="h6 mb-0">
+                                                                <a href="#"
+                                                                    >Connection
+                                                                    1</a
+                                                                >
+                                                            </h3>
+                                                        </div>
+                                                        <div
+                                                            class="d-flex mb-1"
+                                                            style="
+                                                                justify-content: center;
+                                                            "
+                                                        >
+                                                            <a
+                                                                class="btn btn-sm btn-secondary text-success ms-auto"
+                                                                href="#"
+                                                                ><i
+                                                                    class="ai-user-check"
+                                                                ></i></a
+                                                            ><a
+                                                                class="btn btn-sm btn-secondary text-danger ms-auto"
+                                                                href="#"
+                                                                ><i
+                                                                    class="ai-user-x"
+                                                                ></i
+                                                            ></a>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Item-->
+                                                    <div
+                                                        class="col pb-2 pb-sm-3"
+                                                    >
+                                                        <div
+                                                            class="card-hover position-relative bg-secondary rounded-1 p-3 mb-2"
+                                                        >
+                                                            <div class="">
+                                                                <a
+                                                                    class=""
+                                                                    href="#"
+                                                                    id=""
+                                                                    ><img
+                                                                        class="d-block mx-auto"
+                                                                        src="/assets/img/RF.png"
+                                                                        width="226"
+                                                                        alt="Product"
+                                                                /></a>
+                                                            </div>
+                                                        </div>
+                                                        <div
+                                                            class="d-flex mb-1"
+                                                            style="
+                                                                justify-content: center;
+                                                            "
+                                                        >
+                                                            <h3 class="h6 mb-0">
+                                                                <a href="#"
+                                                                    >Connection
+                                                                    1</a
+                                                                >
+                                                            </h3>
+                                                        </div>
+                                                        <div
+                                                            class="d-flex mb-1"
+                                                            style="
+                                                                justify-content: center;
+                                                            "
+                                                        >
+                                                            <a
+                                                                class="btn btn-sm btn-secondary text-success ms-auto"
+                                                                href="#"
+                                                                ><i
+                                                                    class="ai-user-check"
+                                                                ></i></a
+                                                            ><a
+                                                                class="btn btn-sm btn-secondary text-danger ms-auto"
+                                                                href="#"
+                                                                ><i
+                                                                    class="ai-user-x"
+                                                                ></i
+                                                            ></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Basic info-->
+                            <section
+                                class="card border-0 py-1 p-md-2 p-xl-3 p-xxl-4"
+                            >
+                                <div class="card-body pb-4">
+                                    <div
+                                        class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4"
+                                    >
+                                        <!-- Item-->
+                                        <div class="col pb-2 pb-sm-3">
+                                            <div
+                                                class="card-hover position-relative bg-secondary rounded-1 p-3 mb-2"
+                                            >
+                                                <div class="">
+                                                    <a class="" href="#" id=""
+                                                        ><img
+                                                            class="d-block mx-auto"
+                                                            src="/assets/img/RF.png"
+                                                            width="226"
+                                                            alt="Product"
+                                                    /></a>
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="d-flex mb-1"
+                                                style="justify-content: center"
+                                            >
+                                                <h3 class="h6 mb-0">
+                                                    <a href="#">Connection 1</a>
+                                                </h3>
+                                            </div>
+                                        </div>
+                                        <!-- Item-->
+                                        <div class="col pb-2 pb-sm-3">
+                                            <div
+                                                class="card-hover position-relative bg-secondary rounded-1 p-3 mb-2"
+                                            >
+                                                <div class="">
+                                                    <a class="" href="#" id=""
+                                                        ><img
+                                                            class="d-block mx-auto"
+                                                            src="/assets/img/RF.png"
+                                                            width="226"
+                                                            alt="Product"
+                                                    /></a>
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="d-flex mb-1"
+                                                style="justify-content: center"
+                                            >
+                                                <h3 class="h6 mb-0">
+                                                    <a href="#">Connection 1</a>
+                                                </h3>
+                                            </div>
+                                        </div>
+                                        <!-- Item-->
+                                        <div class="col pb-2 pb-sm-3">
+                                            <div
+                                                class="card-hover position-relative bg-secondary rounded-1 p-3 mb-2"
+                                            >
+                                                <div class="">
+                                                    <a class="" href="#" id=""
+                                                        ><img
+                                                            class="d-block mx-auto"
+                                                            src="/assets/img/RF.png"
+                                                            width="226"
+                                                            alt="Product"
+                                                    /></a>
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="d-flex mb-1"
+                                                style="justify-content: center"
+                                            >
+                                                <h3 class="h6 mb-0">
+                                                    <a href="#">Connection 1</a>
+                                                </h3>
+                                            </div>
+                                        </div>
+                                        <!-- Item-->
+                                        <div class="col pb-2 pb-sm-3">
+                                            <div
+                                                class="card-hover position-relative bg-secondary rounded-1 p-3 mb-2"
+                                            >
+                                                <div class="">
+                                                    <a class="" href="#" id=""
+                                                        ><img
+                                                            class="d-block mx-auto"
+                                                            src="/assets/img/RF.png"
+                                                            width="226"
+                                                            alt="Product"
+                                                    /></a>
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="d-flex mb-1"
+                                                style="justify-content: center"
+                                            >
+                                                <h3 class="h6 mb-0">
+                                                    <a href="#">Connection 1</a>
+                                                </h3>
+                                            </div>
+                                        </div>
+                                        <!-- Item-->
+                                        <div class="col pb-2 pb-sm-3">
+                                            <div
+                                                class="card-hover position-relative bg-secondary rounded-1 p-3 mb-2"
+                                            >
+                                                <div class="">
+                                                    <a class="" href="#" id=""
+                                                        ><img
+                                                            class="d-block mx-auto"
+                                                            src="/assets/img/RF.png"
+                                                            width="226"
+                                                            alt="Product"
+                                                    /></a>
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="d-flex mb-1"
+                                                style="justify-content: center"
+                                            >
+                                                <h3 class="h6 mb-0">
+                                                    <a href="#">Connection 1</a>
+                                                </h3>
+                                            </div>
+                                        </div>
+                                        <!-- Item-->
+                                        <div class="col pb-2 pb-sm-3">
+                                            <div
+                                                class="card-hover position-relative bg-secondary rounded-1 p-3 mb-2"
+                                            >
+                                                <div class="">
+                                                    <a class="" href="#" id=""
+                                                        ><img
+                                                            class="d-block mx-auto"
+                                                            src="/assets/img/RF.png"
+                                                            width="226"
+                                                            alt="Product"
+                                                    /></a>
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="d-flex mb-1"
+                                                style="justify-content: center"
+                                            >
+                                                <h3 class="h6 mb-0">
+                                                    <a href="#">Connection 1</a>
+                                                </h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <!-- Footer-->
+        <footer
+            class="footer bg-dark position-relative pb-2 pt-md-1 py-lg-2 py-xl-3"
+        >
+            <%- include('./partials/footer'); %>
+        </footer>
+        <!-- Back to top button-->
+        <a class="btn-scroll-top" href="#top" data-scroll>
+            <svg
+                viewBox="0 0 40 40"
+                fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <circle
+                    cx="20"
+                    cy="20"
+                    r="19"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-miterlimit="10"
+                ></circle></svg
+            ><i class="ai-arrow-up"></i
+        ></a>
+        <!-- Vendor scripts: js libraries and plugins-->
+        <script src="/assets/js/bootstrap.bundle.min.js"></script>
+        <script src="/assets/js/smooth-scroll.polyfills.min.js"></script>
+        <!-- Main theme script-->
+        <script src="/assets/js/theme.min.js"></script>
+    </body>
+</html>
