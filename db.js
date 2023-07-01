@@ -1,29 +1,24 @@
-import Sequelize from 'sequelize';
-import dotenv from 'dotenv';
+const { Sequelize } = require('sequelize');
+const dotenv = require('dotenv');
 
-import UserModel from './models/user.js';
+const UserModel = require('./models/user');
 
 dotenv.config();
 
-const sequelize = new Sequelize(process.env.DATABASE, process.env.DATABASE_USER, process.env.DATABASE_PASSWORD, {
-    host: process.env.DATABASE_HOST,
-    dialect: process.env.DATABASE_DIALECT,
-});
+module.exports = db = {};
 
-export const User = UserModel(sequelize, Sequelize)
+initialize();
 
-sequelize
-    .authenticate()
-    .then(() => {
-        console.log('Connection to the DB has been established successfully.');
-    })
-    .catch((error) => {
-        console.error('Unable to connect to the DB: ', error);
+async function initialize() {
+    // connect to db
+    const sequelize = new Sequelize(process.env.DATABASE, process.env.DATABASE_USER, process.env.DATABASE_PASSWORD, {
+        host: process.env.DATABASE_HOST,
+        dialect: process.env.DATABASE_DIALECT,
     });
 
-sequelize.sync()
-    .then(() => {
-        console.log('Database synced!')
-    })
+    // init models and add them to the exported db object
+    db.User = UserModel(sequelize, Sequelize);
 
-export default sequelize;
+    // sync all models with database
+    await sequelize.sync();
+}

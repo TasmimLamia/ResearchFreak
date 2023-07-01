@@ -1,18 +1,35 @@
-export default (sequelize, type) => {
-    return sequelize.define('user', {
+const { DataTypes } = require('sequelize');
+
+module.exports = model;
+
+function model(sequelize) {
+    const attributes = {
         id: {
-            type: type.INTEGER,
+            type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true
         },
         username: {
-            type: type.STRING,
+            type: DataTypes.STRING,
             unique: true
         },
         email: {
-            type: type.STRING,
+            type: DataTypes.STRING,
             unique: true
         },
-        password: type.STRING(1024)
-    })
+        password: DataTypes.STRING(1024)
+    };
+
+    const options = {
+        defaultScope: {
+            // exclude password by default
+            attributes: { exclude: ['password'] }
+        },
+        scopes: {
+            // include password with this scope
+            withPassword: { attributes: {}, }
+        }
+    };
+
+    return sequelize.define('User', attributes, options);
 }

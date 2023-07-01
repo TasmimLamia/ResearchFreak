@@ -242,7 +242,7 @@
                             >
                                 <div class="card-body">
                                     <h1 class="py-2 pb-lg-3">Sign in to RF</h1>
-                                    <form>
+                                    <form action="/authenticate" method="POST">
                                         <div class="pb-3 mb-3">
                                             <div class="position-relative">
                                                 <i
@@ -251,6 +251,7 @@
                                                 <input
                                                     class="form-control form-control-lg ps-5"
                                                     type="email"
+                                                    name="email"
                                                     placeholder="Email address"
                                                     required
                                                 />
@@ -265,6 +266,7 @@
                                                     <input
                                                         class="form-control form-control-lg ps-5"
                                                         type="password"
+                                                        name="password"
                                                         placeholder="Password"
                                                         required
                                                     />
@@ -317,11 +319,12 @@
                                 <h2 class="h1 pb-2 pb-lg-3">
                                     No account? Sign up
                                 </h2>
-                                <form class="needs-validation" novalidate>
+                                <form action="/register" method="POST">
                                     <div class="col mb-4">
                                         <input
                                             class="form-control form-control-lg"
                                             type="text"
+                                            name="username"
                                             placeholder="Username"
                                             required
                                         />
@@ -330,6 +333,7 @@
                                         <input
                                             class="form-control form-control-lg"
                                             type="email"
+                                            name="email"
                                             placeholder="Email address"
                                             required
                                         />
@@ -338,6 +342,7 @@
                                         <input
                                             class="form-control form-control-lg"
                                             type="password"
+                                            name="password"
                                             placeholder="Password"
                                             required
                                         />

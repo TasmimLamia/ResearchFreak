@@ -1,12 +1,15 @@
-import express, { Router } from 'express';
-import asyncHandler from 'express-async-handler';
+const express = require("express");
+const asyncHandler = require('express-async-handler');
+const router = express.Router();
 
-import authController from '../controllers/authController.js';
+const authorize = require('../middleware/authorize');
+const authController = require('../controllers/authController');
 
-const router = new Router;
-
-router.get('/', asyncHandler(async (req, res) => {
-    res.render('profile.ejs');
+router.get('/', authorize, asyncHandler(async (req, res) => {
+    if (req.user) {
+        res.render("profile.ejs", { user: req.user });
+    }
+    else { res.redirect('/signinup'); }
 }));
 
-export default router;
+module.exports = router;

@@ -1,13 +1,14 @@
-import express from 'express';
-import bodyParser from 'body-parser';
-import cookie from 'cookie-parser';
-import cors from 'cors';
-import dotenv from 'dotenv';
-import path from 'path';
-import { fileURLToPath } from 'url';
+const express = require('express');
+const cors = require('cors');
+const bodyParser = require('body-parser');
+const cookie = require('cookie-parser');
+const dotenv = require('dotenv');
+const path = require('path');
+// const fileURLToPath = require('url').fileURLToPath;
 
-import sequelize from './db.js';
-import router from './routes/router.js';
+const db = require('./db');
+const router = require('./routes/router');
+const errorHandler = require('./middleware/error-handler');
 
 dotenv.config();
 
@@ -21,9 +22,12 @@ app.use(bodyParser.urlencoded({ limit: '25mb', extended: true }));
 app.set('view engine', 'ejs');
 app.use('/', router);
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-app.use(express.static(path.join(__dirname, '/public')))
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = path.dirname(__filename);
+app.use(express.static('./public'))
+
+// global error handler
+app.use(errorHandler);
 
 app.listen(PORT, () => {
     console.log(`App listening to port ${PORT}`);
