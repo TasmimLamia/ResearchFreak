@@ -17,7 +17,14 @@ function model(sequelize) {
             type: DataTypes.STRING,
             unique: true
         },
-        password: DataTypes.STRING(1024)
+        password: DataTypes.STRING(1024),
+        pic: DataTypes.BLOB("long"),
+        bio: DataTypes.STRING,
+        website: DataTypes.STRING,
+        socialmedia: DataTypes.STRING,
+        gender: DataTypes.STRING,
+        country: DataTypes.STRING,
+        interest: DataTypes.STRING
     };
 
     const options = {
