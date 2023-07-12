@@ -11,7 +11,7 @@ const secret = process.env.SECRET;
 const User = db.User, Education = db.Education, Research = db.Research;
 
 module.exports = {
-    getProfile
+    getProfile, getResearcher
 };
 
 async function getProfile(req, res, next) {
@@ -29,6 +29,30 @@ async function getProfile(req, res, next) {
             console.log(e);
             res.sendStatus(404);
         }
+    }
+}
+
+async function getResearcher(req, res, next) {
+    var id = '';
+    if (req.params.id) {
+        id = req.params.id;
+    }
+    else {
+        id = req.user.id;
+    }
+
+    try {
+        const researcher = await getOneUserEducations(id);
+        const education = await getEducationsByUserId(id);
+        const research = await getResearchesByUserId(id);
+        req.researcher = researcher;
+        req.researcher.Education = education;
+        req.researcher.Research = research;
+        console.log(req.researcher);
+        next(); // go to apiRouter.get('/:companyId')
+    } catch (e) {
+        console.log(e);
+        res.sendStatus(404);
     }
 }
 

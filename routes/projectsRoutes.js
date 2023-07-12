@@ -4,14 +4,14 @@ const router = express.Router();
 
 
 const authorize = require('../middleware/authorize');
-const authController = require('../controllers/authController');
+const { getProfile } = require('../controllers/profileController');
 
-router.get('/', authorize, asyncHandler(async (req, res) => {
-    res.render('projects.ejs');
+router.get('/', authorize, getProfile, asyncHandler(async (req, res) => {
+    res.render('projects.ejs', { user: req.user });
 }));
 
-router.get('/1', authorize, asyncHandler(async (req, res) => {
-    res.render('project.ejs');
+router.get('/1', authorize, getProfile, asyncHandler(async (req, res) => {
+    res.render('project.ejs', { user: req.user });
 }));
 
 module.exports = router;
