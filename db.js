@@ -5,6 +5,8 @@ const UserModel = require('./models/user');
 const EducationModel = require('./models/education');
 const ResearchModel = require('./models/research');
 const ConnectionModel = require('./models/connection');
+const ProjectModel = require('./models/project');
+const UserProjectModel = require('./models/userProject');
 
 dotenv.config();
 
@@ -24,6 +26,8 @@ async function initialize() {
     db.Education = EducationModel(sequelize);
     db.Research = ResearchModel(sequelize);
     db.Connection = ConnectionModel(sequelize);
+    db.Project = ProjectModel(sequelize);
+    db.UserProject = UserProjectModel(sequelize);
 
     db.User.hasMany(db.Education, { foreignKey: 'userId' });
     db.Education.belongsTo(db.User, { foreignKey: 'userId' });
@@ -31,23 +35,11 @@ async function initialize() {
     db.User.hasMany(db.Research, { foreignKey: 'userId' });
     db.Research.belongsTo(db.User, { foreignKey: 'userId' });
 
-
-    // db.User.belongsToMany(db.User, {
-    //     through: "connection",
-    //     as: "connections",
-    //     foreignKey: "userId",
-    // });
-
-    // db.User.belongsToMany(db.User, {
-    //     through: "connection",
-    //     as: "users",
-    //     foreignKey: "connectionId",
-    // });
     db.Connection.belongsTo(db.User, { foreignKey: 'userId', as: 'mainUserId' });
     db.Connection.belongsTo(db.User, { foreignKey: 'connectId', as: 'connectingUserId' });
 
-    // db.User.belongsToMany(db.User, { through: 'Connections', as: 'Connects' });
-
+    db.UserProject.belongsTo(db.Project, { foreignKey: 'id' });
+    db.UserProject.belongsTo(db.User, { foreignKey: 'id' });
 
     // sync all models with database
     await sequelize.sync();

@@ -4,14 +4,15 @@ const router = express.Router();
 
 
 const authorize = require('../middleware/authorize');
-const { getProfile } = require('../controllers/profileController');
+const { getProfile, getResearcher } = require('../controllers/profileController');
+const { getProjectList } = require('../controllers/projectController');
 
-router.get('/', authorize, getProfile, asyncHandler(async (req, res) => {
-    res.render('projects.ejs', { user: req.user });
+router.get('/', authorize, getProfile, getResearcher, getProjectList, asyncHandler(async (req, res) => {
+    res.render('projects.ejs', { user: req.user, researcher: req.researcher });
 }));
 
-router.get('/1', authorize, getProfile, asyncHandler(async (req, res) => {
-    res.render('project.ejs', { user: req.user });
+router.get('/1', authorize, getProfile, getResearcher, asyncHandler(async (req, res) => {
+    res.render('project.ejs', { user: req.user, researcher: req.researcher });
 }));
 
 module.exports = router;

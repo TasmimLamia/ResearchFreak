@@ -330,6 +330,9 @@
                                             style="min-width: 450px"
                                         >
                                             <tbody>
+                                                <%
+                                                user.ProjectList.forEach(function(project){
+                                                %>
                                                 <tr>
                                                     <td
                                                         class="border-0 py-4 px-0"
@@ -345,8 +348,9 @@
                                                                 >
                                                                     <a
                                                                         href="/projects/1"
-                                                                        >Project
-                                                                        1</a
+                                                                        ><%=
+                                                                        project.title
+                                                                        %></a
                                                                     >
                                                                 </h4>
                                                                 <div
@@ -355,7 +359,9 @@
                                                                     Owner:
                                                                     <span
                                                                         class="text-dark fw-medium"
-                                                                        >Turquoise</span
+                                                                        ><%=
+                                                                        user.username
+                                                                        %></span
                                                                     >
                                                                 </div>
                                                             </div>
@@ -372,7 +378,8 @@
                                                         <div
                                                             class="fs-sm fw-medium text-dark"
                                                         >
-                                                            2023-06-22
+                                                            <%=
+                                                            project.createdAt %>
                                                         </div>
                                                     </td>
                                                     <td
@@ -410,246 +417,7 @@
                                                         </div>
                                                     </td>
                                                 </tr>
-                                                <tr>
-                                                    <td
-                                                        class="border-0 py-4 px-0"
-                                                    >
-                                                        <div
-                                                            class="d-flex align-items-center"
-                                                        >
-                                                            <div
-                                                                class="ps-3 ps-sm-4"
-                                                            >
-                                                                <h4
-                                                                    class="h6 mb-2"
-                                                                >
-                                                                    <a
-                                                                        href="/projects/1"
-                                                                        >Project
-                                                                        1</a
-                                                                    >
-                                                                </h4>
-                                                                <div
-                                                                    class="text-muted fs-sm me-3"
-                                                                >
-                                                                    Owner:
-                                                                    <span
-                                                                        class="text-dark fw-medium"
-                                                                        >Turquoise</span
-                                                                    >
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td
-                                                        class="border-0 py-1 pe-0 ps-3 ps-sm-4"
-                                                    >
-                                                        <div
-                                                            class="fs-sm text-muted mb-2"
-                                                        >
-                                                            Created
-                                                        </div>
-                                                        <div
-                                                            class="fs-sm fw-medium text-dark"
-                                                        >
-                                                            2023-06-22
-                                                        </div>
-                                                    </td>
-                                                    <td
-                                                        class="border-0 py-1 pe-0 ps-3 ps-sm-4"
-                                                    >
-                                                        <div
-                                                            class="fs-sm text-muted mb-2"
-                                                        >
-                                                            Contributors
-                                                        </div>
-                                                        <div
-                                                            class="fs-sm fw-medium text-dark"
-                                                        >
-                                                            3
-                                                        </div>
-                                                    </td>
-                                                    <td
-                                                        class="border-0 text-center py-1 pe-0 ps-3 ps-sm-4"
-                                                    >
-                                                        <div
-                                                            class="fs-sm text-muted mb-2"
-                                                        >
-                                                            Action
-                                                        </div>
-                                                        <div
-                                                            class="fs-sm fw-medium text-dark"
-                                                        >
-                                                            <a
-                                                                class="btn btn-sm btn-secondary text-danger ms-auto"
-                                                                href="#"
-                                                                ><i
-                                                                    class="ai-trash"
-                                                                ></i
-                                                            ></a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td
-                                                        class="border-0 py-4 px-0"
-                                                    >
-                                                        <div
-                                                            class="d-flex align-items-center"
-                                                        >
-                                                            <div
-                                                                class="ps-3 ps-sm-4"
-                                                            >
-                                                                <h4
-                                                                    class="h6 mb-2"
-                                                                >
-                                                                    <a
-                                                                        href="/projects/1"
-                                                                        >Project
-                                                                        1</a
-                                                                    >
-                                                                </h4>
-                                                                <div
-                                                                    class="text-muted fs-sm me-3"
-                                                                >
-                                                                    Owner:
-                                                                    <span
-                                                                        class="text-dark fw-medium"
-                                                                        >Turquoise</span
-                                                                    >
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td
-                                                        class="border-0 py-1 pe-0 ps-3 ps-sm-4"
-                                                    >
-                                                        <div
-                                                            class="fs-sm text-muted mb-2"
-                                                        >
-                                                            Created
-                                                        </div>
-                                                        <div
-                                                            class="fs-sm fw-medium text-dark"
-                                                        >
-                                                            2023-06-22
-                                                        </div>
-                                                    </td>
-                                                    <td
-                                                        class="border-0 py-1 pe-0 ps-3 ps-sm-4"
-                                                    >
-                                                        <div
-                                                            class="fs-sm text-muted mb-2"
-                                                        >
-                                                            Contributors
-                                                        </div>
-                                                        <div
-                                                            class="fs-sm fw-medium text-dark"
-                                                        >
-                                                            3
-                                                        </div>
-                                                    </td>
-                                                    <td
-                                                        class="border-0 text-center py-1 pe-0 ps-3 ps-sm-4"
-                                                    >
-                                                        <div
-                                                            class="fs-sm text-muted mb-2"
-                                                        >
-                                                            Action
-                                                        </div>
-                                                        <div
-                                                            class="fs-sm fw-medium text-dark"
-                                                        >
-                                                            <a
-                                                                class="btn btn-sm btn-secondary text-danger ms-auto"
-                                                                href="#"
-                                                                ><i
-                                                                    class="ai-trash"
-                                                                ></i
-                                                            ></a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td
-                                                        class="border-0 py-4 px-0"
-                                                    >
-                                                        <div
-                                                            class="d-flex align-items-center"
-                                                        >
-                                                            <div
-                                                                class="ps-3 ps-sm-4"
-                                                            >
-                                                                <h4
-                                                                    class="h6 mb-2"
-                                                                >
-                                                                    <a
-                                                                        href="/projects/1"
-                                                                        >Project
-                                                                        1</a
-                                                                    >
-                                                                </h4>
-                                                                <div
-                                                                    class="text-muted fs-sm me-3"
-                                                                >
-                                                                    Owner:
-                                                                    <span
-                                                                        class="text-dark fw-medium"
-                                                                        >Turquoise</span
-                                                                    >
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td
-                                                        class="border-0 py-1 pe-0 ps-3 ps-sm-4"
-                                                    >
-                                                        <div
-                                                            class="fs-sm text-muted mb-2"
-                                                        >
-                                                            Created
-                                                        </div>
-                                                        <div
-                                                            class="fs-sm fw-medium text-dark"
-                                                        >
-                                                            2023-06-22
-                                                        </div>
-                                                    </td>
-                                                    <td
-                                                        class="border-0 py-1 pe-0 ps-3 ps-sm-4"
-                                                    >
-                                                        <div
-                                                            class="fs-sm text-muted mb-2"
-                                                        >
-                                                            Contributors
-                                                        </div>
-                                                        <div
-                                                            class="fs-sm fw-medium text-dark"
-                                                        >
-                                                            3
-                                                        </div>
-                                                    </td>
-                                                    <td
-                                                        class="border-0 text-center py-1 pe-0 ps-3 ps-sm-4"
-                                                    >
-                                                        <div
-                                                            class="fs-sm text-muted mb-2"
-                                                        >
-                                                            Action
-                                                        </div>
-                                                        <div
-                                                            class="fs-sm fw-medium text-dark"
-                                                        >
-                                                            <a
-                                                                class="btn btn-sm btn-secondary text-danger ms-auto"
-                                                                href="#"
-                                                                ><i
-                                                                    class="ai-trash"
-                                                                ></i
-                                                            ></a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
+                                                <% }) %>
                                             </tbody>
                                         </table>
                                     </div>
