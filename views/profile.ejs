@@ -272,8 +272,9 @@
                                                 ></button>
                                             </div>
                                             <form
-                                                class="modal-body needs-validation pt-0"
-                                                novalidate=""
+                                                class="modal-body pt-0"
+                                                action="/profile/<%= user.id %>"
+                                                method="POST"
                                             >
                                                 <div
                                                     class="row g-3 g-sm-4 mt-0 mt-lg-2"
@@ -343,81 +344,88 @@
                                                             </p>
                                                         </div>
                                                     </div>
-                                                    <div class="col-sm-12">
+                                                    <!-- <div class="col-sm-12">
                                                         <label
                                                             class="form-label"
-                                                            for="infoEmail"
+                                                            for="email"
                                                             >Email</label
                                                         >
                                                         <input
                                                             class="form-control mb-0 me-3"
-                                                            name="infoEmail"
+                                                            name="email"
                                                             type="email"
+                                                            value="<%= user.email %>"
                                                             placeholder="example@example.com"
                                                         />
-                                                    </div>
+                                                    </div> -->
                                                     <div class="col-sm-12">
                                                         <label
                                                             class="form-label"
-                                                            for="infoBio"
+                                                            for="bio"
                                                             >Bio</label
                                                         >
                                                         <textarea
                                                             class="form-control"
                                                             rows="3"
-                                                            name="infoBio"
+                                                            name="bio"
                                                             placeholder="Add a bio"
-                                                        ></textarea>
+                                                        >
+<%= user.bio %></textarea
+                                                        >
                                                     </div>
                                                     <div class="col-sm-12">
                                                         <label
                                                             class="form-label"
-                                                            for="infoWebsite"
+                                                            for="website"
                                                             >Website</label
                                                         >
                                                         <input
                                                             class="form-control mb-0 me-3"
-                                                            name="infoWebsite"
+                                                            name="website"
                                                             type="text"
+                                                            value="<%= user.website %>"
                                                             placeholder="example.com"
                                                         />
                                                     </div>
                                                     <div class="col-sm-12">
                                                         <label
                                                             class="form-label"
-                                                            for="infoSocialmedia"
+                                                            for="socialmedia"
                                                             >Social-media</label
                                                         >
                                                         <input
                                                             class="form-control mb-0 me-3"
-                                                            name="infoSocialmedia"
+                                                            name="socialmedia"
                                                             type="text"
+                                                            value="<%= user.socialmedia %>"
                                                             placeholder="example.com"
                                                         />
                                                     </div>
                                                     <div class="col-sm-12">
                                                         <label
                                                             class="form-label"
-                                                            for="infoGender"
+                                                            for="gender"
                                                             >Gender</label
                                                         >
                                                         <input
                                                             class="form-control mb-0 me-3"
-                                                            name="infoGender"
+                                                            name="gender"
                                                             type="text"
+                                                            value="<%= user.gender %>"
                                                             placeholder="M"
                                                         />
                                                     </div>
                                                     <div class="col-sm-12">
                                                         <label
                                                             class="form-label"
-                                                            for="infoCountry"
+                                                            for="country"
                                                             >Country</label
                                                         >
                                                         <input
                                                             class="form-control mb-0 me-3"
-                                                            name="infoCountry"
+                                                            name="country"
                                                             type="text"
+                                                            value="<%= user.country %>"
                                                             placeholder="X"
                                                         />
                                                     </div>
@@ -427,7 +435,7 @@
                                                 >
                                                     <button
                                                         class="btn btn-primary ms-3"
-                                                        type="button"
+                                                        type="submit"
                                                     >
                                                         Save
                                                     </button>
@@ -602,8 +610,9 @@
                                                         ></button>
                                                     </div>
                                                     <form
-                                                        class="modal-body needs-validation pt-0"
-                                                        novalidate=""
+                                                        class="modal-body pt-0"
+                                                        action="/profile/<%= user.id %>/education"
+                                                        method="POST"
                                                     >
                                                         <div
                                                             class="row g-3 g-sm-4 mt-0 mt-lg-2"
@@ -613,12 +622,12 @@
                                                             >
                                                                 <label
                                                                     class="form-label"
-                                                                    for="eduDegree"
+                                                                    for="degree"
                                                                     >Degree</label
                                                                 >
                                                                 <input
                                                                     class="form-control mb-0 me-3"
-                                                                    name="eduDegree"
+                                                                    name="degree"
                                                                     type="text"
                                                                     placeholder="BSc"
                                                                 />
@@ -628,12 +637,12 @@
                                                             >
                                                                 <label
                                                                     class="form-label"
-                                                                    for="eduMajor"
+                                                                    for="major"
                                                                     >Major</label
                                                                 >
                                                                 <input
                                                                     class="form-control mb-0 me-3"
-                                                                    name="eduMajor"
+                                                                    name="major"
                                                                     type="text"
                                                                     placeholder="CSE"
                                                                 />
@@ -644,12 +653,12 @@
                                                             >
                                                                 <label
                                                                     class="form-label"
-                                                                    for="eduInstitue"
+                                                                    for="institue"
                                                                     >Institue</label
                                                                 >
                                                                 <input
                                                                     class="form-control"
-                                                                    name="eduInstitue"
+                                                                    name="institue"
                                                                     type="text"
                                                                     placeholder="Abed University"
                                                                 />
@@ -659,12 +668,12 @@
                                                             >
                                                                 <label
                                                                     class="form-label"
-                                                                    for="eduCountry"
+                                                                    for="country"
                                                                     >Country</label
                                                                 >
                                                                 <input
                                                                     class="form-control"
-                                                                    name="eduCountry"
+                                                                    name="country"
                                                                     type="text"
                                                                     placeholder="BD"
                                                                 />
@@ -675,13 +684,13 @@
                                                             >
                                                                 <label
                                                                     class="form-label"
-                                                                    for="eduFromYear"
+                                                                    for="fromYear"
                                                                     >From
                                                                     Year</label
                                                                 >
                                                                 <input
                                                                     class="form-control"
-                                                                    name="eduFromYear"
+                                                                    name="fromYear"
                                                                     type="date"
                                                                 />
                                                             </div>
@@ -690,13 +699,13 @@
                                                             >
                                                                 <label
                                                                     class="form-label"
-                                                                    for="eduToYear"
+                                                                    for="toYear"
                                                                     >To
                                                                     Year</label
                                                                 >
                                                                 <input
                                                                     class="form-control"
-                                                                    name="eduToYear"
+                                                                    name="toYear"
                                                                     type="date"
                                                                 />
                                                             </div>
@@ -706,7 +715,7 @@
                                                         >
                                                             <button
                                                                 class="btn btn-primary ms-3"
-                                                                type="button"
+                                                                type="submit"
                                                             >
                                                                 Save
                                                             </button>
@@ -1137,8 +1146,50 @@
                         </div>
                     </div>
                 </div>
+                <div
+                    class="modal fade"
+                    id="searchModal"
+                    tabindex="-1"
+                    role="dialog"
+                    data-focus-input="#search"
+                >
+                    <div
+                        class="modal-dialog modal-dialog-scrollable"
+                        role="document"
+                    >
+                        <div class="modal-content">
+                            <div
+                                class="modal-header d-block position-relative border-0 pb-3"
+                            >
+                                <form class="position-relative w-100 mt-2 mb-4">
+                                    <button
+                                        class="btn-close position-absolute top-50 end-0 translate-middle-y m-0 me-n1"
+                                        type="reset"
+                                        data-bs-dismiss="modal"
+                                    ></button
+                                    ><i
+                                        class="ai-search fs-xl position-absolute top-50 start-0 translate-middle-y ms-3"
+                                    ></i>
+                                    <input
+                                        class="form-control form-control-lg px-5"
+                                        type="search"
+                                        placeholder="Type to search"
+                                        data-focus-on-open='["modal", "#searchModal"]'
+                                    />
+                                </form>
+                                <div
+                                    class="fs-xs fw-medium text-muted text-uppercase"
+                                >
+                                    Suggestions
+                                </div>
+                            </div>
+                            <div class="modal-body pt-3"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </main>
+
         <!-- Footer-->
         <footer
             class="footer bg-dark position-relative pb-2 pt-md-1 py-lg-2 py-xl-3"

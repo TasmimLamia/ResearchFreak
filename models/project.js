@@ -10,8 +10,7 @@ function model(sequelize) {
             autoIncrement: true
         },
         title: DataTypes.STRING,
-        details: DataTypes.STRING(1024),
-        contributors: DataTypes.INTEGER,
+        details: DataTypes.STRING(1024)
     };
 
     const options = {

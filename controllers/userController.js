@@ -3,7 +3,7 @@ const Joi = require('joi');
 const validateRequest = require('../middleware/validate-request');
 const userService = require('../services/userService');
 
-module.exports = { getAll, getCurrent, getById, updateSchema, update, delete: _delete };
+module.exports = { getAll, getCurrent, getById, updateSchema, update, delete: _delete, addEducation, addReview };
 
 function getAll(req, res, next) {
     userService.getAll()
@@ -32,8 +32,20 @@ function updateSchema(req, res, next) {
 }
 
 function update(req, res, next) {
-    userService.update(req.params.id, req.body)
-        .then(user => res.json(user))
+    userService.update(req.params.userId, req.body)
+        .then(user => res.redirect("/profile"))
+        .catch(next);
+}
+
+function addEducation(req, res, next) {
+    userService.addEducation(req.params.userId, req.body)
+        .then(user => res.redirect("/profile"))
+        .catch(next);
+}
+
+function addReview(req, res, next) {
+    userService.addEducation(req.params.userId, req.body)
+        .then(user => res.redirect("/profile"))
         .catch(next);
 }
 

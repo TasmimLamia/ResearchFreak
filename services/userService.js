@@ -11,7 +11,9 @@ module.exports = {
     getById,
     create,
     update,
-    delete: _delete
+    delete: _delete,
+    addEducation,
+    addReview
 };
 
 async function authenticate({ email, password }) {
@@ -69,6 +71,44 @@ async function update(id, params) {
 
     return omitPassword(user.get());
 }
+
+async function addEducation(id, params) {
+    db.Education.create({
+        userId: id,
+        degree: params.degree,
+        major: params.major,
+        institute: params.institute,
+        country: params.country,
+        fromYear: params.fromYear,
+        toYear: params.toYear
+    })
+        .then((education) => {
+            console.log(">> Created education: " + JSON.stringify(education, null, 4));
+            return education;
+        })
+        .catch((err) => {
+            console.log(">> Error while creating education: ", err);
+        });
+};
+
+async function addReview(id, params) {
+    // db.Education.create({
+    //     userId: id,
+    //     degree: params.degree,
+    //     major: params.major,
+    //     institute: params.institute,
+    //     country: params.country,
+    //     fromYear: params.fromYear,
+    //     toYear: params.toYear
+    // })
+    //     .then((education) => {
+    //         console.log(">> Created education: " + JSON.stringify(education, null, 4));
+    //         return education;
+    //     })
+    //     .catch((err) => {
+    //         console.log(">> Error while creating education: ", err);
+    //     });
+};
 
 async function _delete(id) {
     const user = await getUser(id);

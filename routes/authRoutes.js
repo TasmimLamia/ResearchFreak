@@ -4,6 +4,9 @@ const router = express.Router();
 
 const { authenticateSchema, authenticate, registerSchema, register, logout } = require('../controllers/authController');
 
+router.get('/', asyncHandler(async (req, res) => {
+    res.redirect('/signinup');
+}));
 router.get('/signinup', asyncHandler(async (req, res) => {
     res.render('signinup.ejs');
 }));

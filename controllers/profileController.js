@@ -93,3 +93,17 @@ async function getResearchesByUserId(id) {
             console.log(">> Error while finding research: ", err);
         });
 }
+
+async function postRating() {
+    return Research.findAll({
+        where: { userId: id },
+        raw: true,
+        nest: true,
+    })
+        .then((research) => {
+            return research;
+        })
+        .catch((err) => {
+            console.log(">> Error while finding research: ", err);
+        });
+}
