@@ -18,7 +18,7 @@ function model(sequelize) {
             unique: true
         },
         password: DataTypes.STRING(1024),
-        pic: DataTypes.BLOB("long"),
+        pic: DataTypes.STRING,
         bio: DataTypes.STRING,
         website: DataTypes.STRING,
         socialmedia: DataTypes.STRING,

@@ -1,0 +1,94 @@
+<div
+    class="modal fade"
+    id="educationCreateModal"
+    tabindex="-1"
+    role="dialog"
+    data-focus-input="#"
+>
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header border-0">
+                <h4 class="modal-title">Add Educational Record</h4>
+                <button
+                    class="btn-close"
+                    type="button"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                ></button>
+            </div>
+            <form
+                class="modal-body pt-0"
+                action="/profile/education"
+                method="POST"
+            >
+                <div class="row g-3 g-sm-4 mt-0 mt-lg-2">
+                    <div class="col-sm-6">
+                        <label class="form-label" for="degree">Degree</label>
+                        <input
+                            class="form-control mb-0 me-3"
+                            name="degree"
+                            type="text"
+                            required
+                        />
+                    </div>
+                    <div class="col-sm-6">
+                        <label class="form-label" for="major">Major</label>
+                        <input
+                            class="form-control mb-0 me-3"
+                            name="major"
+                            type="text"
+                            required
+                        />
+                    </div>
+
+                    <div class="col-sm-6">
+                        <label class="form-label" for="institute"
+                            >Institue</label
+                        >
+                        <input
+                            class="form-control"
+                            name="institute"
+                            type="text"
+                            required
+                        />
+                    </div>
+                    <div class="col-sm-6">
+                        <label class="form-label" for="country">Country</label>
+                        <input
+                            class="form-control"
+                            name="country"
+                            type="text"
+                            required
+                        />
+                    </div>
+
+                    <div class="col-sm-6">
+                        <label class="form-label" for="fromYear"
+                            >From Year</label
+                        >
+                        <input
+                            class="form-control"
+                            name="fromYear"
+                            type="date"
+                            required
+                        />
+                    </div>
+                    <div class="col-sm-6">
+                        <label class="form-label" for="toYear">To Year</label>
+                        <input
+                            class="form-control"
+                            name="toYear"
+                            type="date"
+                            required
+                        />
+                    </div>
+                </div>
+                <div class="col-12 d-flex justify-content-center pt-3">
+                    <button class="btn btn-primary ms-3" type="submit">
+                        Save
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

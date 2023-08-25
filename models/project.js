@@ -9,8 +9,13 @@ function model(sequelize) {
             primaryKey: true,
             autoIncrement: true
         },
+        owner: DataTypes.INTEGER,
         title: DataTypes.STRING,
-        details: DataTypes.STRING(1024)
+        details: DataTypes.STRING(1024),
+        date: {
+            type: DataTypes.DATEONLY,
+            defaultValue: DataTypes.NOW
+        }
     };
 
     const options = {

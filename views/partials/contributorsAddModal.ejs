@@ -1,0 +1,68 @@
+<div
+    class="modal fade"
+    id="contributorsAddModal"
+    tabindex="-1"
+    role="dialog"
+    data-focus-input="#"
+>
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header border-0">
+                <h4 class="modal-title">Add Contributors</h4>
+                <button
+                    class="btn-close"
+                    type="button"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                ></button>
+            </div>
+            <div class="modal-body pt-0">
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+                    <%
+                    project.PotentialContributor.forEach(function(potContributor){
+                    %>
+                    <div class="col pb-2 pb-sm-3">
+                        <div
+                            class="card-hover position-relative bg-secondary rounded-1 p-3 mb-2"
+                        >
+                            <div class="">
+                                <a class="" href="#" id=""
+                                    ><img
+                                        class="d-block mx-auto"
+                                        src="/assets/img/pics/<%= potContributor.pic %>"
+                                        width="226"
+                                        alt="Product"
+                                /></a>
+                            </div>
+                        </div>
+                        <div
+                            class="d-flex mb-1"
+                            style="justify-content: center"
+                        >
+                            <h3 class="h6 mb-0">
+                                <a href="/profile/<%= potContributor.id %>"
+                                    ><%= potContributor.username %></a
+                                >
+                            </h3>
+                        </div>
+                        <div class="text-center mb-1">
+                            <form
+                                class="ms-auto"
+                                action="/projects/<%= project.id %>/addContributor/<%= potContributor.id %>"
+                                method="POST"
+                            >
+                                <button
+                                    class="btn btn-sm btn-secondary text-success"
+                                    type="submit"
+                                >
+                                    <i class="ai-user-check"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    <% }) %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,132 @@
+<% researcher.Research.forEach(function(research){ %>
+<div class="card p-3 mt-2 mt-lg-3 rounded-3">
+    <div class="d-flex align-items-center pb-1 mb-1">
+        <h3 class="h6 mb-0 me-3" style="flex: 1"><%= research.title %></h3>
+        <a
+            class="btn btn-sm btn-secondary ms-auto"
+            href="#researchEditModal<%= research.id %>"
+            data-bs-toggle="modal"
+            ><i class="ai-edit-alt"></i
+        ></a>
+        <a
+            class="btn btn-sm btn-secondary text-danger ms-auto"
+            href="#researchDeleteModal<%= research.id %>"
+            data-bs-toggle="modal"
+            ><i class="ai-trash"></i
+        ></a>
+    </div>
+    <p class="mb-0"><%= research.year %></p>
+    <p class="mb-0"><%= research.link %></p>
+    <div
+        class="modal fade"
+        id="researchEditModal<%= research.id %>"
+        tabindex="-1"
+        role="dialog"
+        data-focus-input="#"
+    >
+        <div class="modal-dialog modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h4 class="modal-title">Edit Research Work</h4>
+                    <button
+                        class="btn-close"
+                        type="button"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                    ></button>
+                </div>
+                <form
+                    class="modal-body pt-0"
+                    action="/profile/research/<%= research.id %>"
+                    method="POST"
+                >
+                    <div class="row g-3 g-sm-4 mt-0 mt-lg-2">
+                        <div class="col-sm-12">
+                            <label class="form-label" for="workTitle"
+                                >Title</label
+                            >
+                            <input
+                                class="form-control mb-0 me-3"
+                                name="title"
+                                type="text"
+                                value="<%= research.title %>"
+                                required
+                            />
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="form-label" for="year">Year</label>
+                            <input
+                                class="form-control mb-0 me-3"
+                                name="year"
+                                type="text"
+                                value="<%= research.year %>"
+                                required
+                            />
+                        </div>
+
+                        <div class="col-sm-6">
+                            <label class="form-label" for="link">Link</label>
+                            <input
+                                class="form-control"
+                                name="link"
+                                type="text"
+                                value="<%= research.link %>"
+                                required
+                            />
+                        </div>
+                    </div>
+                    <div class="col-12 d-flex justify-content-center pt-3">
+                        <button class="btn btn-primary ms-3" type="submit">
+                            Save
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div
+        class="modal fade"
+        id="researchDeleteModal<%= research.id %>"
+        tabindex="-1"
+        role="dialog"
+        data-focus-input="#"
+    >
+        <div class="modal-dialog modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h4 class="modal-title">Delete Research Record</h4>
+                    <button
+                        class="btn-close"
+                        type="reset"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                    ></button>
+                </div>
+                <form
+                    class="modal-body pt-0"
+                    action="/profile/research/delete/<%= research.id %>"
+                    method="POST"
+                >
+                    <div class="row g-3 g-sm-4 mt-0 mt-lg-2">
+                        <div class="col-sm-12 text-center">
+                            Are you sure you want to delete?
+                        </div>
+                    </div>
+                    <div class="col-12 d-flex justify-content-center pt-3">
+                        <button
+                            class="btn btn-primary ms-3"
+                            type="reset"
+                            data-bs-dismiss="modal"
+                        >
+                            No
+                        </button>
+                        <button class="btn btn-danger ms-3" type="submit">
+                            Yes
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<% }) %>

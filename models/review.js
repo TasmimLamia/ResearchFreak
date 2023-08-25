@@ -7,9 +7,10 @@ function model(sequelize) {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
-            autoIncrement: true,
-            allowNull: false
-        }
+            autoIncrement: true
+        },
+        rating: DataTypes.INTEGER,
+        review: DataTypes.STRING
     };
 
     const options = {
@@ -18,5 +19,5 @@ function model(sequelize) {
         }
     };
 
-    return sequelize.define('Connection', attributes, options);
+    return sequelize.define('Review', attributes, options);
 }

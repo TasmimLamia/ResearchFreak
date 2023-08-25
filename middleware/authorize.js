@@ -12,12 +12,16 @@ async function authorize(req, res, next) {
             let decoded = jwt.verify(token, secret);
             const user = await db.User.findByPk(decoded.id);
             if (!user)
-                return res.status(401).json({ message: 'Unauthorized' });
+                return res.redirect('/signinup');
             req.user = user.get();
+            next();
         }
-        next();
+        else {
+            return res.redirect('/signinup');
+        }
     } catch (err) {
-        return res.status(401).json({ "msg": "Couldnt Authenticate" });
+        console.error(err);
+        return res.redirect('/signinup');
     }
 }
 

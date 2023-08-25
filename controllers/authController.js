@@ -24,7 +24,7 @@ async function authenticate(req, res, next) {
     const user = await db.User.scope('withPassword').findOne({ where: { email: req.body.email } });
 
     if (!user || !(await bcrypt.compare(req.body.password, user.password)))
-        res.status(400).json({ error: 'Username or password is incorrect' });
+        return res.status(400).redirect("/profile");
 
     // authentication successful
     const token = jwt.sign({ "id": user.id, "email": user.email, "username": user.username }, secret, { expiresIn: '7d' });
@@ -53,7 +53,7 @@ async function register(req, res, next) {
     const password = req.body.password;
 
     if (await db.User.findOne({ where: { username: username } })) {
-        res.status(400).json({ error: 'Username "' + username + '" is already taken' });
+        return res.status(400).json({ error: 'Username "' + username + '" is already taken' });
     }
 
     // hash password
@@ -67,10 +67,11 @@ async function register(req, res, next) {
 }
 
 async function logout(req, res, next) {
-    res.cookie("userToken", "logout", {
-        expires: new Date(Date.now() + 2 * 1000),
-        httpOnly: true,
-    });
+    // res.cookie("userToken", "logout", {
+    //     expires: new Date(Date.now() + 2 * 1000),
+    //     httpOnly: true,
+    // });
+    res.clearCookie("userToken");
 
     res.status(200).redirect("/signinup");
 }

@@ -18,5 +18,5 @@ function model(sequelize) {
         }
     };
 
-    return sequelize.define('Connection', attributes, options);
+    return sequelize.define('ConnectionRequest', attributes, options);
 }

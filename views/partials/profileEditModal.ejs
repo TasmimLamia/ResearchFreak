@@ -1,0 +1,139 @@
+<div
+    class="modal fade"
+    id="infoEditModal"
+    tabindex="-1"
+    role="dialog"
+    data-focus-input="#"
+>
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header border-0">
+                <h4 class="modal-title">Edit Info</h4>
+                <button
+                    class="btn-close"
+                    type="button"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                ></button>
+            </div>
+            <form class="modal-body pt-0" action="/profile" method="POST">
+                <div class="row g-3 g-sm-4 mt-0 mt-lg-2">
+                    <div class="col-sm-12">
+                        <label class="form-label" for="infoPic"
+                            >Profile picture</label
+                        >
+                        <div class="dropdown">
+                            <a
+                                class="d-flex flex-column justify-content-end position-relative overflow-hidden rounded-circle bg-size-cover bg-position-center flex-shrink-0"
+                                href="#"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                                style="
+                                    width: 80px;
+                                    height: 80px;
+                                    background-image: url(assets/img/avatar/02.jpg);
+                                "
+                                ><span
+                                    class="d-block text-light text-center lh-1 pb-1"
+                                    style="background-color: rgba(0, 0, 0, 0.5)"
+                                    ><i class="ai-camera"></i></span
+                            ></a>
+                            <div class="dropdown-menu my-1">
+                                <a class="dropdown-item fw-normal" href="#"
+                                    ><i
+                                        class="ai-camera fs-base opacity-70 me-2"
+                                    ></i
+                                    >Upload new photo</a
+                                ><a
+                                    class="dropdown-item text-danger fw-normal"
+                                    href="#"
+                                    ><i class="ai-trash fs-base me-2"></i>Delete
+                                    photo</a
+                                >
+                            </div>
+                        </div>
+                        <div class="ps-3">
+                            <p class="fs-sm text-muted mb-0">
+                                PNG or JPG no bigger than 1000px wide and tall.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- <div class="col-sm-12">
+                                                        <label
+                                                            class="form-label"
+                                                            for="email"
+                                                            >Email</label
+                                                        >
+                                                        <input
+                                                            class="form-control mb-0 me-3"
+                                                            name="email"
+                                                            type="email"
+                                                            value="<%= user.email %>"
+                                                            placeholder="example@example.com"
+                                                        />
+                                                    </div> -->
+                    <div class="col-sm-12">
+                        <label class="form-label" for="bio">Bio</label>
+                        <textarea class="form-control" rows="3" name="bio">
+<%= user.bio %></textarea
+                        >
+                    </div>
+                    <div class="col-sm-12">
+                        <label class="form-label" for="website"
+                            >Research Interest</label
+                        >
+                        <input
+                            class="form-control mb-0 me-3"
+                            name="interest"
+                            type="text"
+                            value="<%= user.interest %>"
+                        />
+                    </div>
+                    <div class="col-sm-12">
+                        <label class="form-label" for="website">Website</label>
+                        <input
+                            class="form-control mb-0 me-3"
+                            name="website"
+                            type="text"
+                            value="<%= user.website %>"
+                        />
+                    </div>
+                    <div class="col-sm-12">
+                        <label class="form-label" for="socialmedia"
+                            >Social-media</label
+                        >
+                        <input
+                            class="form-control mb-0 me-3"
+                            name="socialmedia"
+                            type="text"
+                            value="<%= user.socialmedia %>"
+                        />
+                    </div>
+                    <div class="col-sm-12">
+                        <label class="form-label" for="gender">Gender</label>
+                        <input
+                            class="form-control mb-0 me-3"
+                            name="gender"
+                            type="text"
+                            value="<%= user.gender %>"
+                        />
+                    </div>
+                    <div class="col-sm-12">
+                        <label class="form-label" for="country">Country</label>
+                        <input
+                            class="form-control mb-0 me-3"
+                            name="country"
+                            type="text"
+                            value="<%= user.country %>"
+                        />
+                    </div>
+                </div>
+                <div class="col-12 d-flex justify-content-center pt-3">
+                    <button class="btn btn-primary ms-3" type="submit">
+                        Save
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

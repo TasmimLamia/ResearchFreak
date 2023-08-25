@@ -7,10 +7,9 @@ function model(sequelize) {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
-            autoIncrement: true
-        },
-        userId: DataTypes.STRING,
-        projectId: DataTypes.STRING
+            autoIncrement: true,
+            allowNull: false
+        }
     };
 
     const options = {

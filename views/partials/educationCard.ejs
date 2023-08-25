@@ -1,0 +1,175 @@
+<% researcher.Education.forEach(function(education){ %>
+<div class="card p-3 mt-2 mt-lg-3 rounded-3">
+    <div class="d-flex justify-between pb-1 mb-1">
+        <h3 class="h6 mb-0 me-3" style="flex: 1">
+            <%= education.degree %> in <%= education.major %>
+        </h3>
+        <a
+            class="btn btn-sm btn-secondary ms-auto"
+            href="#educationEditModal<%= education.id %>"
+            data-bs-toggle="modal"
+            ><i class="ai-edit-alt"></i
+        ></a>
+        <a
+            class="btn btn-sm btn-secondary text-danger ms-auto"
+            href="#educationDeleteModal<%= education.id %>"
+            data-bs-toggle="modal"
+            ><i class="ai-trash"></i
+        ></a>
+    </div>
+    <p class="mb-0"><%= education.institute %>, <%= education.country %></p>
+    <p class="mb-0">
+        From: <%= education.fromYear %> To: <%= education.toYear %>
+    </p>
+    <div
+        class="modal fade"
+        id="educationEditModal<%= education.id %>"
+        tabindex="-1"
+        role="dialog"
+        data-focus-input="#"
+    >
+        <div class="modal-dialog modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h4 class="modal-title">Edit Educational Record</h4>
+                    <button
+                        class="btn-close"
+                        type="button"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                    ></button>
+                </div>
+                <form
+                    class="modal-body pt-0"
+                    action="/profile/education/<%= education.id %>"
+                    method="POST"
+                >
+                    <div class="row g-3 g-sm-4 mt-0 mt-lg-2">
+                        <div class="col-sm-6">
+                            <label class="form-label" for="degree"
+                                >Degree</label
+                            >
+                            <input
+                                class="form-control mb-0 me-3"
+                                name="degree"
+                                type="text"
+                                value="<%= education.degree %>"
+                                required
+                            />
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="form-label" for="major">Major</label>
+                            <input
+                                class="form-control mb-0 me-3"
+                                name="major"
+                                type="text"
+                                value="<%= education.major %>"
+                                required
+                            />
+                        </div>
+
+                        <div class="col-sm-6">
+                            <label class="form-label" for="institute"
+                                >Institue</label
+                            >
+                            <input
+                                class="form-control"
+                                name="institute"
+                                type="text"
+                                value="<%= education.institute %>"
+                                required
+                            />
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="form-label" for="country"
+                                >Country</label
+                            >
+                            <input
+                                class="form-control"
+                                name="country"
+                                type="text"
+                                value="<%= education.country %>"
+                                required
+                            />
+                        </div>
+
+                        <div class="col-sm-6">
+                            <label class="form-label" for="fromYear"
+                                >From Year</label
+                            >
+                            <input
+                                class="form-control"
+                                name="fromYear"
+                                type="date"
+                                value="<%= education.fromYear %>"
+                                required
+                            />
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="form-label" for="toYear"
+                                >To Year</label
+                            >
+                            <input
+                                class="form-control"
+                                name="toYear"
+                                type="date"
+                                value="<%= education.toYear %>"
+                                required
+                            />
+                        </div>
+                    </div>
+                    <div class="col-12 d-flex justify-content-center pt-3">
+                        <button class="btn btn-primary ms-3" type="submit">
+                            Save
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div
+        class="modal fade"
+        id="educationDeleteModal<%= education.id %>"
+        tabindex="-1"
+        role="dialog"
+        data-focus-input="#"
+    >
+        <div class="modal-dialog modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h4 class="modal-title">Delete Educational Record</h4>
+                    <button
+                        class="btn-close"
+                        type="reset"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                    ></button>
+                </div>
+                <form
+                    class="modal-body pt-0"
+                    action="/profile/education/delete/<%= education.id %>"
+                    method="POST"
+                >
+                    <div class="row g-3 g-sm-4 mt-0 mt-lg-2">
+                        <div class="col-sm-12 text-center">
+                            Are you sure you want to delete?
+                        </div>
+                    </div>
+                    <div class="col-12 d-flex justify-content-center pt-3">
+                        <button
+                            class="btn btn-primary ms-3"
+                            type="reset"
+                            data-bs-dismiss="modal"
+                        >
+                            No
+                        </button>
+                        <button class="btn btn-danger ms-3" type="submit">
+                            Yes
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<% }) %>

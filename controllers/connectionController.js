@@ -8,20 +8,22 @@ const db = require('../db');
 const validateRequest = require('../middleware/validate-request');
 
 const secret = process.env.SECRET;
-const User = db.User, Connection = db.Connection;
+const User = db.User, Connection = db.Connection, ConnectionRequest = db.ConnectionRequest;
 
 module.exports = {
-    getConnections
+    getConnections, addConnection, removeConnection, addRequest, cancelRequest, removeRequest
 };
 
 async function getConnections(req, res, next) {
     if (req.user) {
         try {
-            const user = await getOneUserEducations(req.user.id);
-            const connection = await getConnectionsByUserId(req.user.id);
-            req.user = user;
-            req.user.Connection = connection;
-            next(); // go to apiRouter.get('/:companyId')
+            const user = await User.findOne({
+                where: { id: req.user.id }
+            });
+            req.user.Connection = await user.getConnectingUsers();
+            req.user.Requester = await user.getRequesterUsers();
+            req.user.Requested = await user.getRequestedUsers();
+            next();
         } catch (e) {
             console.log(e);
             res.sendStatus(404);
@@ -29,8 +31,8 @@ async function getConnections(req, res, next) {
     }
 }
 
-async function getOneUserEducations(id) {
-    return User.findByPk(id)
+async function getMainUser(id) {
+    return await User.findByPk(id)
         .then((user) => {
             return user;
         })
@@ -46,12 +48,85 @@ async function getConnectionsByUserId(id) {
         },
         include: [{
             model: User,
-            as: 'connectingUserId',
+            as: 'connectingUsers'
         }],
         order: [
-            ['connectingUserId', 'createdAt', 'DESC'],
+            ['connectingUsers', 'createdAt', 'DESC'],
         ],
         raw: true,
         nest: true,
-    })).map(x => x.connectingUserId)
+    })).map(x => x.connectingUsers)
+}
+
+async function addConnection(req, res, next) {
+    try {
+        await User.findByPk(req.user.id).then(async mainUser => {
+            await User.findByPk(req.params.connectId).then(connectingUser => {
+                connectingUser.removeRequestedUsers(mainUser);
+                mainUser.addConnectingUsers(connectingUser);
+                connectingUser.addConnectingUsers(mainUser);
+            });
+        });
+        next();
+    } catch (error) {
+        console.log(e);
+        res.sendStatus(404);
+    }
+}
+
+async function removeConnection(req, res, next) {
+    try {
+        await User.findByPk(req.user.id).then(async mainUser => {
+            await User.findByPk(req.params.connectId).then(connectingUser => {
+                mainUser.removeConnectingUsers(connectingUser);
+                connectingUser.removeConnectingUsers(mainUser);
+            });
+        });
+        next();
+    } catch (error) {
+        console.log(e);
+        res.sendStatus(404);
+    }
+}
+
+async function addRequest(req, res, next) {
+    try {
+        await User.findByPk(req.user.id).then(async requesterUser => {
+            await User.findByPk(req.params.userId).then(requestedUser => {
+                requesterUser.addRequestedUsers(requestedUser);
+            });
+        });
+        next();
+    } catch (error) {
+        console.log(error);
+        res.sendStatus(404);
+    }
+}
+
+async function cancelRequest(req, res, next) {
+    try {
+        await User.findByPk(req.user.id).then(async requesterUser => {
+            await User.findByPk(req.params.userId).then(requestedUser => {
+                requesterUser.removeRequestedUsers(requestedUser);
+            });
+        });
+        next();
+    } catch (error) {
+        console.log(error);
+        res.sendStatus(404);
+    }
+}
+
+async function removeRequest(req, res, next) {
+    try {
+        await User.findByPk(req.user.id).then(async requestedUser => {
+            await User.findByPk(req.params.requesterId).then(requesterUser => {
+                requesterUser.removeRequestedUsers(requestedUser);
+            });
+        });
+        next();
+    } catch (error) {
+        console.log(error);
+        res.sendStatus(404);
+    }
 }

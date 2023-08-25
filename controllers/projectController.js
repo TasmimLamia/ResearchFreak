@@ -1,48 +1,33 @@
 const express = require('express');
 const Joi = require('joi');
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcryptjs');
 const dotenv = require('dotenv');
 const { Sequelize } = require('sequelize');
 
 const db = require('../db');
 const validateRequest = require('../middleware/validate-request');
 
-const secret = process.env.SECRET;
 const User = db.User, Project = db.Project, UserProject = db.UserProject;
 
 module.exports = {
-    getProject, getProjectList, updateProject
+    getProject, getProjectList, createProject, updateProject, addContributor, removeContributor
 };
 
-async function getProjectList(req, res, next) {
-    if (req.user) {
-        try {
-            const projectIds = await getProjectIdsByUserId(req.user.id);
-            const projectList = await getProjectsById(req.user.id, projectIds);
-            console.log(projectList)
-            req.user.ProjectList = projectList;
-            next(); // go to apiRouter.get('/:companyId')
-        } catch (e) {
-            console.log(e);
-            res.sendStatus(404);
-        }
-    }
-}
-
 async function getProject(req, res, next) {
-    if (req.params.id) {
+    if (req.params.projectId) {
         try {
-            const project = await Project.findByPk(req.params.id);
+            const project = await Project.findByPk(req.params.projectId);
             if (!project) {
                 res.sendStatus(404);
             };
-            const contributorIds = await getContributorIdsByProjectId(project.id);
-            const contributorList = await getContributorsById(req.params.id, contributorIds);
-            console.log(contributorList)
+            const contributorList = await getContributorsByProjeectId(req.params.projectId);
             req.project = project;
             req.project.ContributorList = contributorList;
-            next(); // go to apiRouter.get('/:companyId')
+            req.project.PotentialContributor = await getAddContributors(req.user.id, req.params.projectId);
+            const nonPotentialContributors = await project.getUsers();
+            const findUserIndex = nonPotentialContributors.findIndex(a => a.id === req.user.id)
+            findUserIndex !== -1 && nonPotentialContributors.splice(findUserIndex, 1)
+            req.project.NonPotentialContributor = nonPotentialContributors;
+            next();
         } catch (e) {
             console.log(e);
             res.sendStatus(404);
@@ -50,42 +35,51 @@ async function getProject(req, res, next) {
     }
 }
 
-async function getContributorIdsByProjectId(id) {
-    return (await UserProject.findAll({ // if args.id === 1, return user => 2
-        where: {
-            projectId: id,
-        },
-        raw: true,
-        nest: true,
-    })).map(x => x.userId)
+async function createProject(req, res, next) {
+    if (req.user) {
+        await Project
+            .create(req.body)
+            .then(async (project) => {
+                await UserProject
+                    .create({ userId: req.user.id, projectId: project.id })
+                    .then((userProject) => {
+                        next();
+                    })
+                    .catch((e) => {
+                        console.log(e);
+                        res.sendStatus(400);
+                    });
+            })
+            .catch(err => {
+                console.log(err);
+                res.sendStatus(400);
+            });
+    }
 }
 
-async function getContributorsById(id, userIds) {
+async function getContributorsByProjeectId(projectId) {
     return (await UserProject.findAll({
         attributes: [],
         include: [
             {
                 model: User,
-                where: {
-                    id: {
-                        [Sequelize.Op.in]: userIds,
-                    },
-                },
+                as: 'Users',
             },
         ],
+        where: {
+            projectId: projectId,
+        },
         raw: true,
         nest: true,
-    })).map(x => x.User)
+    })).map(x => x.Users)
 }
 
 async function getProjectList(req, res, next) {
     if (req.user) {
         try {
-            const projectIds = await getProjectIdsByUserId(req.user.id);
-            const projectList = await getProjectsById(req.user.id, projectIds);
-            console.log(projectList)
+            const projectList = await getProjectsById(req.user.id);
             req.user.ProjectList = projectList;
-            next(); // go to apiRouter.get('/:companyId')
+            next();
         } catch (e) {
             console.log(e);
             res.sendStatus(404);
@@ -93,32 +87,32 @@ async function getProjectList(req, res, next) {
     }
 }
 
-async function getProjectIdsByUserId(id) {
-    return (await UserProject.findAll({ // if args.id === 1, return user => 2
-        where: {
-            userId: id,
-        },
-        raw: true,
-        nest: true,
-    })).map(x => x.projectId)
-}
-
-async function getProjectsById(id, projectIds) {
-    return (await UserProject.findAll({
+async function getProjectsById(userId) {
+    const projects = (await UserProject.findAll({
         attributes: [],
         include: [
             {
                 model: Project,
-                where: {
-                    id: {
-                        [Sequelize.Op.in]: projectIds,
+                as: 'Projects',
+                include: [
+                    {
+                        model: User,
+                        as: 'Users',
+                        attributes: ['id', 'username'],
+                        where: {
+                            id: userId,
+                        }
                     },
-                },
+                ],
             },
         ],
+        where: {
+            userId: userId,
+        },
         raw: true,
         nest: true,
-    })).map(x => x.Project)
+    })).map(x => x.Projects);
+    return projects;
 }
 
 function updateProject(req, res, next) {
@@ -130,9 +124,37 @@ function updateProject(req, res, next) {
 async function update(id, params) {
     const project = await db.Project.findByPk(id);
 
-    // copy params to user and save
     Object.assign(project, params);
     await project.save();
 
     return project;
+}
+
+async function getAddContributors(userId, projectId) {
+    const user = await User.findOne({
+        where: { id: userId }
+    });
+    const connections = await user.getConnectingUsers();
+    const contributorList = await getContributorsByProjeectId(projectId);
+    return connections.filter(({ id: id1 }) => !contributorList.some(({ id: id2 }) => id2 === id1));
+}
+
+async function addContributor(req, res, next) {
+    const project = await Project.findOne({
+        where: { id: req.params.projectId }
+    });
+    await project.addUsers(await User.findOne({
+        where: { id: req.params.userId }
+    }));
+    next();
+}
+
+async function removeContributor(req, res, next) {
+    const project = await Project.findOne({
+        where: { id: req.params.projectId }
+    });
+    await project.removeUsers(await User.findOne({
+        where: { id: req.params.userId }
+    }));
+    next();
 }

@@ -241,6 +241,7 @@
                                 class="d-flex align-items-center mt-sm-n1 pb-4 mb-0 mb-lg-1 mb-xl-3"
                             >
                                 <h1 class="h2 mb-4">Overview</h1>
+                                <% if (user.id == researcher.id) { %>
                                 <a
                                     class="btn btn-sm btn-secondary ms-auto"
                                     href="#infoEditModal"
@@ -248,202 +249,73 @@
                                     ><i class="ai-edit-alt ms-n1 me-2"></i>Edit
                                     info</a
                                 >
-                                <div
-                                    class="modal fade"
-                                    id="infoEditModal"
-                                    tabindex="-1"
-                                    role="dialog"
-                                    data-focus-input="#"
+                                <% } else if (user.id != researcher.id) { %> <%
+                                if (requestedUser == false && requesterUser ==
+                                false && connectionStatus == false) { %>
+                                <form
+                                    action="/connections/addRequest/<%= researcher.id %>"
+                                    method="POST"
+                                    class="ms-auto"
                                 >
-                                    <div
-                                        class="modal-dialog modal-dialog-scrollable"
-                                        role="document"
+                                    <button
+                                        class="btn btn-sm btn-outline-primary w-100 w-md-auto"
+                                        type="submit"
                                     >
-                                        <div class="modal-content">
-                                            <div class="modal-header border-0">
-                                                <h4 class="modal-title">
-                                                    Edit Info
-                                                </h4>
-                                                <button
-                                                    class="btn-close"
-                                                    type="button"
-                                                    data-bs-dismiss="modal"
-                                                    aria-label="Close"
-                                                ></button>
-                                            </div>
-                                            <form
-                                                class="modal-body pt-0"
-                                                action="/profile/<%= user.id %>"
-                                                method="POST"
-                                            >
-                                                <div
-                                                    class="row g-3 g-sm-4 mt-0 mt-lg-2"
-                                                >
-                                                    <div class="col-sm-12">
-                                                        <label
-                                                            class="form-label"
-                                                            for="infoPic"
-                                                            >Profile
-                                                            picture</label
-                                                        >
-                                                        <div class="dropdown">
-                                                            <a
-                                                                class="d-flex flex-column justify-content-end position-relative overflow-hidden rounded-circle bg-size-cover bg-position-center flex-shrink-0"
-                                                                href="#"
-                                                                data-bs-toggle="dropdown"
-                                                                aria-expanded="false"
-                                                                style="
-                                                                    width: 80px;
-                                                                    height: 80px;
-                                                                    background-image: url(assets/img/avatar/02.jpg);
-                                                                "
-                                                                ><span
-                                                                    class="d-block text-light text-center lh-1 pb-1"
-                                                                    style="
-                                                                        background-color: rgba(
-                                                                            0,
-                                                                            0,
-                                                                            0,
-                                                                            0.5
-                                                                        );
-                                                                    "
-                                                                    ><i
-                                                                        class="ai-camera"
-                                                                    ></i></span
-                                                            ></a>
-                                                            <div
-                                                                class="dropdown-menu my-1"
-                                                            >
-                                                                <a
-                                                                    class="dropdown-item fw-normal"
-                                                                    href="#"
-                                                                    ><i
-                                                                        class="ai-camera fs-base opacity-70 me-2"
-                                                                    ></i
-                                                                    >Upload new
-                                                                    photo</a
-                                                                ><a
-                                                                    class="dropdown-item text-danger fw-normal"
-                                                                    href="#"
-                                                                    ><i
-                                                                        class="ai-trash fs-base me-2"
-                                                                    ></i
-                                                                    >Delete
-                                                                    photo</a
-                                                                >
-                                                            </div>
-                                                        </div>
-                                                        <div class="ps-3">
-                                                            <p
-                                                                class="fs-sm text-muted mb-0"
-                                                            >
-                                                                PNG or JPG no
-                                                                bigger than
-                                                                1000px wide and
-                                                                tall.
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                    <!-- <div class="col-sm-12">
-                                                        <label
-                                                            class="form-label"
-                                                            for="email"
-                                                            >Email</label
-                                                        >
-                                                        <input
-                                                            class="form-control mb-0 me-3"
-                                                            name="email"
-                                                            type="email"
-                                                            value="<%= user.email %>"
-                                                            placeholder="example@example.com"
-                                                        />
-                                                    </div> -->
-                                                    <div class="col-sm-12">
-                                                        <label
-                                                            class="form-label"
-                                                            for="bio"
-                                                            >Bio</label
-                                                        >
-                                                        <textarea
-                                                            class="form-control"
-                                                            rows="3"
-                                                            name="bio"
-                                                            placeholder="Add a bio"
-                                                        >
-<%= user.bio %></textarea
-                                                        >
-                                                    </div>
-                                                    <div class="col-sm-12">
-                                                        <label
-                                                            class="form-label"
-                                                            for="website"
-                                                            >Website</label
-                                                        >
-                                                        <input
-                                                            class="form-control mb-0 me-3"
-                                                            name="website"
-                                                            type="text"
-                                                            value="<%= user.website %>"
-                                                            placeholder="example.com"
-                                                        />
-                                                    </div>
-                                                    <div class="col-sm-12">
-                                                        <label
-                                                            class="form-label"
-                                                            for="socialmedia"
-                                                            >Social-media</label
-                                                        >
-                                                        <input
-                                                            class="form-control mb-0 me-3"
-                                                            name="socialmedia"
-                                                            type="text"
-                                                            value="<%= user.socialmedia %>"
-                                                            placeholder="example.com"
-                                                        />
-                                                    </div>
-                                                    <div class="col-sm-12">
-                                                        <label
-                                                            class="form-label"
-                                                            for="gender"
-                                                            >Gender</label
-                                                        >
-                                                        <input
-                                                            class="form-control mb-0 me-3"
-                                                            name="gender"
-                                                            type="text"
-                                                            value="<%= user.gender %>"
-                                                            placeholder="M"
-                                                        />
-                                                    </div>
-                                                    <div class="col-sm-12">
-                                                        <label
-                                                            class="form-label"
-                                                            for="country"
-                                                            >Country</label
-                                                        >
-                                                        <input
-                                                            class="form-control mb-0 me-3"
-                                                            name="country"
-                                                            type="text"
-                                                            value="<%= user.country %>"
-                                                            placeholder="X"
-                                                        />
-                                                    </div>
-                                                </div>
-                                                <div
-                                                    class="col-12 d-flex justify-content-center pt-3"
-                                                >
-                                                    <button
-                                                        class="btn btn-primary ms-3"
-                                                        type="submit"
-                                                    >
-                                                        Save
-                                                    </button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
+                                        Connect
+                                    </button>
+                                </form>
+                                <% } else if (requestedUser == true) { %>
+                                <form
+                                    action="/connections/cancelRequest/<%= researcher.id %>"
+                                    method="POST"
+                                    class="ms-auto"
+                                >
+                                    <button
+                                        class="btn btn-sm btn-outline-secondary w-100 w-md-auto ms-auto"
+                                        type="submit"
+                                    >
+                                        Cancel request
+                                    </button>
+                                </form>
+                                <% } else if (requesterUser == true) { %>
+                                <form
+                                    action="/connections/addConnection/<%= researcher.id %>"
+                                    method="POST"
+                                    class="ms-auto"
+                                >
+                                    <button
+                                        class="btn btn-sm btn-outline-primary w-100 w-md-auto"
+                                        type="submit"
+                                    >
+                                        Approve request
+                                    </button>
+                                </form>
+                                <form
+                                    action="/connections/removeRequest/<%= researcher.id %>"
+                                    method="POST"
+                                >
+                                    <button
+                                        class="btn btn-sm btn-outline-secondary w-100 w-md-auto"
+                                        type="submit"
+                                    >
+                                        Remove request
+                                    </button>
+                                </form>
+                                <% } else if (connectionStatus == true) { %>
+                                <form
+                                    action="/connections/removeConnection/<%= researcher.id %>"
+                                    method="POST"
+                                    class="ms-auto"
+                                >
+                                    <button
+                                        class="btn btn-sm btn-outline-danger w-100 w-md-auto"
+                                        type="submit"
+                                    >
+                                        Disconnect
+                                    </button>
+                                </form>
+                                <% } } %> <%-
+                                include('./partials/profileEditModal'); %>
                             </div>
                             <!-- Basic info-->
                             <section
@@ -477,78 +349,6 @@
                                         <h2 class="h4 mb-0">
                                             Research Interest
                                         </h2>
-                                        <a
-                                            class="btn btn-sm btn-secondary text- ms-auto"
-                                            href="#interestAddModal"
-                                            data-bs-toggle="modal"
-                                            ><i
-                                                class="ai-circle-plus ms-n1 me-2"
-                                            ></i
-                                            >Add</a
-                                        >
-                                        <div
-                                            class="modal fade"
-                                            id="interestAddModal"
-                                            tabindex="-1"
-                                            role="dialog"
-                                            data-focus-input="#"
-                                        >
-                                            <div
-                                                class="modal-dialog modal-dialog-scrollable"
-                                                role="document"
-                                            >
-                                                <div class="modal-content">
-                                                    <div
-                                                        class="modal-header border-0"
-                                                    >
-                                                        <h4 class="modal-title">
-                                                            Add Research
-                                                            Interest
-                                                        </h4>
-                                                        <button
-                                                            class="btn-close"
-                                                            type="button"
-                                                            data-bs-dismiss="modal"
-                                                            aria-label="Close"
-                                                        ></button>
-                                                    </div>
-                                                    <form
-                                                        class="modal-body needs-validation pt-0"
-                                                        novalidate=""
-                                                    >
-                                                        <div
-                                                            class="row g-3 g-sm-4 mt-0 mt-lg-2"
-                                                        >
-                                                            <div
-                                                                class="col-sm-12"
-                                                            >
-                                                                <label
-                                                                    class="form-label"
-                                                                    for="interest"
-                                                                    >Interest</label
-                                                                >
-                                                                <input
-                                                                    class="form-control mb-0 me-3"
-                                                                    name="interest"
-                                                                    type="text"
-                                                                    placeholder=""
-                                                                />
-                                                            </div>
-                                                        </div>
-                                                        <div
-                                                            class="col-12 d-flex justify-content-center pt-3"
-                                                        >
-                                                            <button
-                                                                class="btn btn-primary ms-3"
-                                                                type="button"
-                                                            >
-                                                                Save
-                                                            </button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
                                     </div>
                                     <div class="d-md-flex align-items-center">
                                         <% if (researcher.interest) {researcher
@@ -576,331 +376,18 @@
                                         <h2 class="h4 mb-0">Education</h2>
                                         <a
                                             class="btn btn-sm btn-secondary ms-auto"
-                                            href="#eduAddModal"
+                                            href="#educationCreateModal"
                                             data-bs-toggle="modal"
                                             ><i
                                                 class="ai-circle-plus ms-n1 me-2"
                                             ></i
                                             >Add</a
                                         >
-                                        <div
-                                            class="modal fade"
-                                            id="eduAddModal"
-                                            tabindex="-1"
-                                            role="dialog"
-                                            data-focus-input="#"
-                                        >
-                                            <div
-                                                class="modal-dialog modal-dialog-scrollable"
-                                                role="document"
-                                            >
-                                                <div class="modal-content">
-                                                    <div
-                                                        class="modal-header border-0"
-                                                    >
-                                                        <h4 class="modal-title">
-                                                            Add Educational
-                                                            Record
-                                                        </h4>
-                                                        <button
-                                                            class="btn-close"
-                                                            type="button"
-                                                            data-bs-dismiss="modal"
-                                                            aria-label="Close"
-                                                        ></button>
-                                                    </div>
-                                                    <form
-                                                        class="modal-body pt-0"
-                                                        action="/profile/<%= user.id %>/education"
-                                                        method="POST"
-                                                    >
-                                                        <div
-                                                            class="row g-3 g-sm-4 mt-0 mt-lg-2"
-                                                        >
-                                                            <div
-                                                                class="col-sm-6"
-                                                            >
-                                                                <label
-                                                                    class="form-label"
-                                                                    for="degree"
-                                                                    >Degree</label
-                                                                >
-                                                                <input
-                                                                    class="form-control mb-0 me-3"
-                                                                    name="degree"
-                                                                    type="text"
-                                                                    placeholder="BSc"
-                                                                />
-                                                            </div>
-                                                            <div
-                                                                class="col-sm-6"
-                                                            >
-                                                                <label
-                                                                    class="form-label"
-                                                                    for="major"
-                                                                    >Major</label
-                                                                >
-                                                                <input
-                                                                    class="form-control mb-0 me-3"
-                                                                    name="major"
-                                                                    type="text"
-                                                                    placeholder="CSE"
-                                                                />
-                                                            </div>
-
-                                                            <div
-                                                                class="col-sm-6"
-                                                            >
-                                                                <label
-                                                                    class="form-label"
-                                                                    for="institue"
-                                                                    >Institue</label
-                                                                >
-                                                                <input
-                                                                    class="form-control"
-                                                                    name="institue"
-                                                                    type="text"
-                                                                    placeholder="Abed University"
-                                                                />
-                                                            </div>
-                                                            <div
-                                                                class="col-sm-6"
-                                                            >
-                                                                <label
-                                                                    class="form-label"
-                                                                    for="country"
-                                                                    >Country</label
-                                                                >
-                                                                <input
-                                                                    class="form-control"
-                                                                    name="country"
-                                                                    type="text"
-                                                                    placeholder="BD"
-                                                                />
-                                                            </div>
-
-                                                            <div
-                                                                class="col-sm-6"
-                                                            >
-                                                                <label
-                                                                    class="form-label"
-                                                                    for="fromYear"
-                                                                    >From
-                                                                    Year</label
-                                                                >
-                                                                <input
-                                                                    class="form-control"
-                                                                    name="fromYear"
-                                                                    type="date"
-                                                                />
-                                                            </div>
-                                                            <div
-                                                                class="col-sm-6"
-                                                            >
-                                                                <label
-                                                                    class="form-label"
-                                                                    for="toYear"
-                                                                    >To
-                                                                    Year</label
-                                                                >
-                                                                <input
-                                                                    class="form-control"
-                                                                    name="toYear"
-                                                                    type="date"
-                                                                />
-                                                            </div>
-                                                        </div>
-                                                        <div
-                                                            class="col-12 d-flex justify-content-center pt-3"
-                                                        >
-                                                            <button
-                                                                class="btn btn-primary ms-3"
-                                                                type="submit"
-                                                            >
-                                                                Save
-                                                            </button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <%-
+                                        include('./partials/educationCreateModal');
+                                        %>
                                     </div>
-                                    <% researcher
-                                    .Education.forEach(function(education){ %>
-                                    <div
-                                        class="card p-3 mt-2 mt-lg-3 rounded-3"
-                                    >
-                                        <div
-                                            class="d-flex justify-between pb-1 mb-1"
-                                        >
-                                            <h3
-                                                class="h6 mb-0 me-3"
-                                                style="flex: 1"
-                                            >
-                                                <%= education.degree %> in <%=
-                                                education.major %>
-                                            </h3>
-                                            <a
-                                                class="btn btn-sm btn-secondary ms-auto"
-                                                href="#eduEditModal"
-                                                data-bs-toggle="modal"
-                                                ><i class="ai-edit-alt"></i
-                                            ></a>
-                                            <a
-                                                class="btn btn-sm btn-secondary text-danger ms-auto"
-                                                href="#"
-                                                ><i class="ai-trash"></i
-                                            ></a>
-                                        </div>
-                                        <p class="mb-0">
-                                            <%= education.institute %>
-                                        </p>
-                                        <p class="mb-0">
-                                            <%= education.fromYear %> to <%=
-                                            education.toYear %>
-                                        </p>
-                                        <div
-                                            class="modal fade"
-                                            id="eduEditModal"
-                                            tabindex="-1"
-                                            role="dialog"
-                                            data-focus-input="#"
-                                        >
-                                            <div
-                                                class="modal-dialog modal-dialog-scrollable"
-                                                role="document"
-                                            >
-                                                <div class="modal-content">
-                                                    <div
-                                                        class="modal-header border-0"
-                                                    >
-                                                        <h4 class="modal-title">
-                                                            Edit Educational
-                                                            Record
-                                                        </h4>
-                                                        <button
-                                                            class="btn-close"
-                                                            type="button"
-                                                            data-bs-dismiss="modal"
-                                                            aria-label="Close"
-                                                        ></button>
-                                                    </div>
-                                                    <form
-                                                        class="modal-body needs-validation pt-0"
-                                                        novalidate=""
-                                                    >
-                                                        <div
-                                                            class="row g-3 g-sm-4 mt-0 mt-lg-2"
-                                                        >
-                                                            <div
-                                                                class="col-sm-6"
-                                                            >
-                                                                <label
-                                                                    class="form-label"
-                                                                    for="eduDegree"
-                                                                    >Degree</label
-                                                                >
-                                                                <input
-                                                                    class="form-control mb-0 me-3"
-                                                                    name="eduDegree"
-                                                                    type="text"
-                                                                    placeholder="BSc"
-                                                                />
-                                                            </div>
-                                                            <div
-                                                                class="col-sm-6"
-                                                            >
-                                                                <label
-                                                                    class="form-label"
-                                                                    for="eduMajor"
-                                                                    >Major</label
-                                                                >
-                                                                <input
-                                                                    class="form-control mb-0 me-3"
-                                                                    name="eduMajor"
-                                                                    type="text"
-                                                                    placeholder="CSE"
-                                                                />
-                                                            </div>
-
-                                                            <div
-                                                                class="col-sm-6"
-                                                            >
-                                                                <label
-                                                                    class="form-label"
-                                                                    for="eduInstitue"
-                                                                    >Institue</label
-                                                                >
-                                                                <input
-                                                                    class="form-control"
-                                                                    name="eduInstitue"
-                                                                    type="text"
-                                                                    placeholder="Abed University"
-                                                                />
-                                                            </div>
-                                                            <div
-                                                                class="col-sm-6"
-                                                            >
-                                                                <label
-                                                                    class="form-label"
-                                                                    for="eduCountry"
-                                                                    >Country</label
-                                                                >
-                                                                <input
-                                                                    class="form-control"
-                                                                    name="eduCountry"
-                                                                    type="text"
-                                                                    placeholder="BD"
-                                                                />
-                                                            </div>
-
-                                                            <div
-                                                                class="col-sm-6"
-                                                            >
-                                                                <label
-                                                                    class="form-label"
-                                                                    for="eduFromYear"
-                                                                    >From
-                                                                    Year</label
-                                                                >
-                                                                <input
-                                                                    class="form-control"
-                                                                    name="eduFromYear"
-                                                                    type="date"
-                                                                />
-                                                            </div>
-                                                            <div
-                                                                class="col-sm-6"
-                                                            >
-                                                                <label
-                                                                    class="form-label"
-                                                                    for="eduToYear"
-                                                                    >To
-                                                                    Year</label
-                                                                >
-                                                                <input
-                                                                    class="form-control"
-                                                                    name="eduToYear"
-                                                                    type="date"
-                                                                />
-                                                            </div>
-                                                        </div>
-                                                        <div
-                                                            class="col-12 d-flex justify-content-center pt-3"
-                                                        >
-                                                            <button
-                                                                class="btn btn-primary ms-3"
-                                                                type="button"
-                                                            >
-                                                                Save
-                                                            </button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <% }) %>
+                                    <%- include('./partials/educationCard'); %>
                                 </div>
                             </section>
 
@@ -917,276 +404,24 @@
                                         <h2 class="h4 mb-0">Research Work</h2>
                                         <a
                                             class="btn btn-sm btn-secondary ms-auto"
-                                            href="#workAddModal"
+                                            href="#researchCreateModal"
                                             data-bs-toggle="modal"
                                             ><i
                                                 class="ai-circle-plus ms-n1 me-2"
                                             ></i
                                             >Add</a
                                         >
-                                        <div
-                                            class="modal fade"
-                                            id="workAddModal"
-                                            tabindex="-1"
-                                            role="dialog"
-                                            data-focus-input="#"
-                                        >
-                                            <div
-                                                class="modal-dialog modal-dialog-scrollable"
-                                                role="document"
-                                            >
-                                                <div class="modal-content">
-                                                    <div
-                                                        class="modal-header border-0"
-                                                    >
-                                                        <h4 class="modal-title">
-                                                            Add Research Work
-                                                        </h4>
-                                                        <button
-                                                            class="btn-close"
-                                                            type="button"
-                                                            data-bs-dismiss="modal"
-                                                            aria-label="Close"
-                                                        ></button>
-                                                    </div>
-                                                    <form
-                                                        class="modal-body needs-validation pt-0"
-                                                        novalidate=""
-                                                    >
-                                                        <div
-                                                            class="row g-3 g-sm-4 mt-0 mt-lg-2"
-                                                        >
-                                                            <div
-                                                                class="col-sm-12"
-                                                            >
-                                                                <label
-                                                                    class="form-label"
-                                                                    for="workTitle"
-                                                                    >Title</label
-                                                                >
-                                                                <input
-                                                                    class="form-control mb-0 me-3"
-                                                                    name="workTitle"
-                                                                    type="text"
-                                                                    placeholder=""
-                                                                />
-                                                            </div>
-                                                            <div
-                                                                class="col-sm-6"
-                                                            >
-                                                                <label
-                                                                    class="form-label"
-                                                                    for="workYear"
-                                                                    >Year</label
-                                                                >
-                                                                <input
-                                                                    class="form-control mb-0 me-3"
-                                                                    name="workTitle"
-                                                                    type="text"
-                                                                    placeholder=""
-                                                                />
-                                                            </div>
-
-                                                            <div
-                                                                class="col-sm-6"
-                                                            >
-                                                                <label
-                                                                    class="form-label"
-                                                                    for="workLink"
-                                                                    >Link</label
-                                                                >
-                                                                <input
-                                                                    class="form-control"
-                                                                    name="workLink"
-                                                                    type="text"
-                                                                    placeholder=""
-                                                                />
-                                                            </div>
-                                                        </div>
-                                                        <div
-                                                            class="col-12 d-flex justify-content-center pt-3"
-                                                        >
-                                                            <button
-                                                                class="btn btn-primary ms-3"
-                                                                type="button"
-                                                            >
-                                                                Save
-                                                            </button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <%-
+                                        include('./partials/researchCreateModal');
+                                        %>
                                     </div>
-                                    <% researcher
-                                    .Research.forEach(function(research){ %>
-                                    <div
-                                        class="card p-3 mt-2 mt-lg-3 rounded-3"
-                                    >
-                                        <div
-                                            class="d-flex align-items-center pb-1 mb-1"
-                                        >
-                                            <h3
-                                                class="h6 mb-0 me-3"
-                                                style="flex: 1"
-                                            >
-                                                <%= research.title %>
-                                            </h3>
-                                            <a
-                                                class="btn btn-sm btn-secondary ms-auto"
-                                                href="#workEditModal"
-                                                data-bs-toggle="modal"
-                                                ><i class="ai-edit-alt"></i
-                                            ></a>
-                                            <a
-                                                class="btn btn-sm btn-secondary text-danger ms-auto"
-                                                href="#"
-                                                ><i class="ai-trash"></i
-                                            ></a>
-                                        </div>
-                                        <p class="mb-0"><%= research.year %></p>
-                                        <p class="mb-0"><%= research.link %></p>
-                                        <div
-                                            class="modal fade"
-                                            id="workEditModal"
-                                            tabindex="-1"
-                                            role="dialog"
-                                            data-focus-input="#"
-                                        >
-                                            <div
-                                                class="modal-dialog modal-dialog-scrollable"
-                                                role="document"
-                                            >
-                                                <div class="modal-content">
-                                                    <div
-                                                        class="modal-header border-0"
-                                                    >
-                                                        <h4 class="modal-title">
-                                                            Edit Research Work
-                                                        </h4>
-                                                        <button
-                                                            class="btn-close"
-                                                            type="button"
-                                                            data-bs-dismiss="modal"
-                                                            aria-label="Close"
-                                                        ></button>
-                                                    </div>
-                                                    <form
-                                                        class="modal-body needs-validation pt-0"
-                                                        novalidate=""
-                                                    >
-                                                        <div
-                                                            class="row g-3 g-sm-4 mt-0 mt-lg-2"
-                                                        >
-                                                            <div
-                                                                class="col-sm-12"
-                                                            >
-                                                                <label
-                                                                    class="form-label"
-                                                                    for="workTitle"
-                                                                    >Title</label
-                                                                >
-                                                                <input
-                                                                    class="form-control mb-0 me-3"
-                                                                    name="workTitle"
-                                                                    type="text"
-                                                                    placeholder=""
-                                                                />
-                                                            </div>
-                                                            <div
-                                                                class="col-sm-6"
-                                                            >
-                                                                <label
-                                                                    class="form-label"
-                                                                    for="workYear"
-                                                                    >Year</label
-                                                                >
-                                                                <input
-                                                                    class="form-control mb-0 me-3"
-                                                                    name="workTitle"
-                                                                    type="text"
-                                                                    placeholder=""
-                                                                />
-                                                            </div>
-
-                                                            <div
-                                                                class="col-sm-6"
-                                                            >
-                                                                <label
-                                                                    class="form-label"
-                                                                    for="workLink"
-                                                                    >Link</label
-                                                                >
-                                                                <input
-                                                                    class="form-control"
-                                                                    name="workLink"
-                                                                    type="text"
-                                                                    placeholder=""
-                                                                />
-                                                            </div>
-                                                        </div>
-                                                        <div
-                                                            class="col-12 d-flex justify-content-center pt-3"
-                                                        >
-                                                            <button
-                                                                class="btn btn-primary ms-3"
-                                                                type="button"
-                                                            >
-                                                                Save
-                                                            </button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <% }) %>
+                                    <%- include('./partials/researchCard'); %>
                                 </div>
                             </section>
                         </div>
                     </div>
                 </div>
-                <div
-                    class="modal fade"
-                    id="searchModal"
-                    tabindex="-1"
-                    role="dialog"
-                    data-focus-input="#search"
-                >
-                    <div
-                        class="modal-dialog modal-dialog-scrollable"
-                        role="document"
-                    >
-                        <div class="modal-content">
-                            <div
-                                class="modal-header d-block position-relative border-0 pb-3"
-                            >
-                                <form class="position-relative w-100 mt-2 mb-4">
-                                    <button
-                                        class="btn-close position-absolute top-50 end-0 translate-middle-y m-0 me-n1"
-                                        type="reset"
-                                        data-bs-dismiss="modal"
-                                    ></button
-                                    ><i
-                                        class="ai-search fs-xl position-absolute top-50 start-0 translate-middle-y ms-3"
-                                    ></i>
-                                    <input
-                                        class="form-control form-control-lg px-5"
-                                        type="search"
-                                        placeholder="Type to search"
-                                        data-focus-on-open='["modal", "#searchModal"]'
-                                    />
-                                </form>
-                                <div
-                                    class="fs-xs fw-medium text-muted text-uppercase"
-                                >
-                                    Suggestions
-                                </div>
-                            </div>
-                            <div class="modal-body pt-3"></div>
-                        </div>
-                    </div>
-                </div>
+                <%- include('./partials/searchModal'); %>
             </div>
         </main>
 
